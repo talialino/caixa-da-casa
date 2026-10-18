@@ -31,6 +31,14 @@ No iPhone, instalar na tela de início é importante: o Safari pode apagar dados
 - Tudo que entra na conta PJ conta como faturamento. Entradas na conta pessoal: o app pergunta uma vez por cliente e lembra.
 - A aba MEI mostra quanto falta para o limite, a estimativa de Imposto de Renda e os meses de DAS pagos.
 
+## Benefícios (Swile, VR…)
+- Mande os prints do extrato do Swile pelo botão **+** (pode escolher vários de uma vez). O app lê datas, gastos e créditos sozinho. Ou cadastre os valores fixos na aba MEI → "Recebe benefícios num cartão?".
+- Na aba MEI, em **Vendas na maquininha**, escolha se elas contam no MEI e se vêm do seu próprio cartão de benefícios (para não somar em dobro).
+
+## Atualizar o app
+- Basta substituir os arquivos no GitHub. O app da tela de início abre a versão nova sozinho (às vezes leva alguns minutos; feche e abra de novo). Os dados continuam, porque ficam no celular e o endereço é o mesmo.
+- **Não remova o app da tela de início**: no iPhone isso apaga os dados dele. Faça um backup antes de atualizar, por garantia.
+
 ## Como usar
 
 - **Importar extrato:** no app ou site do banco, exporte o extrato ou a fatura em **PDF, OFX, CSV ou Excel** e abra pelo botão "Importar extrato". O app categoriza sozinho e ignora lançamentos repetidos.
