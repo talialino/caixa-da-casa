@@ -1,5 +1,7 @@
 # Caixa da Casa
 
+No celular funciona como aplicativo; no computador, como site com menu lateral.
+
 Controle financeiro pessoal que roda no navegador (iPhone e Android). Os dados ficam salvos só no aparelho, sem servidor e sem banco de dados.
 
 ## Publicar de graça no GitHub Pages
@@ -31,13 +33,20 @@ No iPhone, instalar na tela de início é importante: o Safari pode apagar dados
 - Tudo que entra na conta PJ conta como faturamento. Entradas na conta pessoal: o app pergunta uma vez por cliente e lembra.
 - A aba MEI mostra quanto falta para o limite, a estimativa de Imposto de Renda e os meses de DAS pagos.
 
-## Benefícios (Swile, VR…)
-- Mande os prints do extrato do Swile pelo botão **+** (pode escolher vários de uma vez). O app lê datas, gastos e créditos sozinho. Ou cadastre os valores fixos na aba MEI → "Recebe benefícios num cartão?".
-- Na aba MEI, em **Vendas na maquininha**, escolha se elas contam no MEI e se vêm do seu próprio cartão de benefícios (para não somar em dobro).
+## Benefícios (Swile, Caju, VR…)
+- O cartão benefício tem aba própria (**Benefício**) e não entra nos seus ganhos: mostra quanto recebeu, quanto pagou, quanto sobra e o que você costuma pagar nele.
+- Mande os prints do extrato dele pelo botão **+** (pode escolher vários de uma vez), de preferência com "beneficio" no nome do arquivo.
+- Maquininha: em Primeiros passos ou na aba MEI, diga se você passa seu cartão benefício ou seu cartão de crédito do banco na sua maquininha. Cartão benefício na maquininha vira ganho; cartão de crédito do banco não.
 
 ## Atualizar o app
 - Basta substituir os arquivos no GitHub. O app da tela de início abre a versão nova sozinho (às vezes leva alguns minutos; feche e abra de novo). Os dados continuam, porque ficam no celular e o endereço é o mesmo.
 - **Não remova o app da tela de início**: no iPhone isso apaga os dados dele. Faça um backup antes de atualizar, por garantia.
+
+## Resumo do mês
+- **Entrou**: salário, auxílios da empresa, auxílios do governo, resgates de investimento e outros ganhos (inclui MEI).
+- **Saiu**: cartão de crédito, contas/Pix/débitos e dívidas. O que você guardou ou investiu aparece separado.
+- O cartão de cima diz quanto ainda dá para gastar no mês (e por dia), quanto dá para guardar e, a longo prazo, se dá para investir.
+- Nomes de arquivo ajudam: "fatura" = cartão de crédito (as próximas parcelas já entram nos meses seguintes); "beneficio" = cartão benefício; nome do mês = mês do arquivo.
 
 ## Como usar
 

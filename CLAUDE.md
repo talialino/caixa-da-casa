@@ -25,12 +25,26 @@ App pessoal de controle financeiro (inspirado no Pierry, mais simples) para uso 
 - Importação: `parseOFX`, `parseCSV`, `parseLoose` (texto livre de PDF/colado/print), `parseQuick` ("uber 23,50"). `handleFiles` aceita vários arquivos de uma vez, inclusive imagens; PDF sem texto (print salvo em PDF) e imagens passam por `prepCanvas` (cinza + contraste) e `ocrCanvases`.
 - `parseLoose`: datas em linha própria valem para as linhas seguintes; `SKIP_RE` ignora linhas de resumo de fatura (limite, parcelas, utilizado, juros de parcelamento…); `STOP_RE` corta seções de rodapé; `NODATE_RE` ignora datas de vencimento/período/emissão; valores com `%` não contam; aceita "(+)/(-)" do Banco do Brasil; quando a descrição vem antes ou depois do valor (Caixa, BB), junta as linhas. Em modo `ocr` o sinal é decidido pelo texto (só "crédito recebido", "estorno" etc. são entrada). Em fatura de cartão, valores sem sinal já são gastos (`guess`), e os com sinal são invertidos.
 - Testado com extratos reais (Inter PF de 26 páginas: soma bate com o saldo final), faturas Nubank e Porto Seguro, extrato BB, comprovante da Caixa e print do Swile. Tudo passa pela tela "Conferir" (`impSheet`), com deduplicação (`dupKey`/FITID) e marcação automática de contas fixas pagas (`autoMatchBills`).
-- Telas: `vHome`, `vTx`, `vMei`, `vPlan` (Limites/Contas/Metas). Formulários em folhas (`openSheet`). Ações por `data-act`.
+- Telas: `vHome` (resumo), `vTx` (extrato), `vPlan` (Contas fixas / Parcelas / Dívidas / Metas), `vBen` (cartão benefício), `vMei`. Formulários em folhas (`openSheet`). Ações por `data-act`.
+- Layout responsivo: no celular, barra inferior (Início, Extrato, +, Planejar, Mais); a partir de 960px vira site com menu lateral (`.d-only`/`.m-only`) e cartões em duas colunas (`.home-grid`, `.home-top`).
+
+## Lógica do resumo (pedido da usuária: entender quanto entrou, saiu, sobrou e se dá para gastar ou investir)
+- `monthSum(ym)`: Entrou = salário + auxílios da empresa + auxílios do governo + resgates de investimento + outros ganhos (inclui MEI). Saiu = cartão de crédito (contas `kind:"cartao"`) + contas/Pix/débitos + dívidas. Guardado/investido (categoria `investimento`) fica à parte; saldo dos investimentos = guardou − resgatou. Sobrou = entrou − saiu − guardou.
+- Fora dos totais: `propria` (entre minhas contas), pagamento de fatura (`isCardPayment`, inclui Portoseg), Pix entre a família na visão Família, e tudo das contas `kind:"beneficio"` (cartão benefício é dinheiro limitado; tem aba própria).
+- `forecast(ym)`/`verdictCard`: soma o que já saiu + contas fixas ainda não pagas + parcelas previstas, conta com o salário cadastrado (`S.salary`) se ainda não caiu, separa a meta de guardar (`S.saveGoal`, 10%) e diz quanto ainda pode gastar (e por dia) ou quanto falta. `longTerm()` usa a média dos últimos 3 meses e os juros pagos no ano para dizer se dá para investir.
+- Maquininha (`S.machine.own`: `no` | `benefit` | `bank` | `both`): venda para clientes ou paga com o próprio cartão benefício é ganho (e MEI); paga com o próprio cartão de crédito do banco não é ganho (`propria`), e `reconcileMachine()` casa a compra da fatura com o nome da usuária e a venda de valor parecido em até 7 dias.
+
+## Importação extra
+- `fileHints(nome)`: "fatura"/"invoice" → cartão de crédito; "beneficio"/Swile/Caju/VR… → cartão benefício; nome de mês (ex.: 01_beneficio_abril) → mês padrão para linhas sem data.
+- Contas têm `kind` (`conta`, `cartao`, `beneficio`), escolhido na tela Conferir.
+- Parcelas: `instInfo` lê "Parcela 2/5" ou "05/06" em fatura; `projectInstallments` cria as próximas como `proj:true` (previstas) e as substitui quando a fatura seguinte chega. Lançamento manual parcelado: campo "Parcelado?" ou "tv 1200 10x" no Escrever rápido (`addInstallments`).
+- Edição livre: todo lançamento pode ser editado ou excluído; "Excluir toda esta importação" (`t.imp`) e "Excluir esta compra parcelada inteira" (`t.inst.key`).
+- `findRecurring()`: com 3+ meses de dados, sugere contas fixas (mesmo pagador em 3+ meses, valor parecido) com a conta/cartão onde são pagas; contas fixas guardam `acc` (pago com), `since` e `until` (fim de dívida).
 - `window.__caixa` expõe parsers e cálculos para teste.
 
 ## Tela de entrada e primeiros passos
 - `#screen` é uma tela cheia por cima do app. `openWelcome()` mostra a entrada com dois botões: Primeiros passos e Ir para o início. Abre ao iniciar enquanto `S.showWelcome` for true (desliga ao terminar o assistente; a própria tela tem a opção). O coração no topo e Ajustes reabrem.
-- Assistente `WSTEPS = intro, voce, mei, bancos, extrato, contas, uso`; cada etapa em `WSTEP[key]()` devolve título, texto e corpo; `wzSave(key)` grava; "Pular" avança sem gravar (só intro e uso não têm pular). Progresso em `S.onb = {done, step}`.
+- Assistente `WSTEPS = intro, voce, renda, mei, bancos, maquininha, beneficio, dividas, extrato, contas, uso` (pede 3 meses de extratos e faturas); cada etapa em `WSTEP[key]()` devolve título, texto e corpo; `wzSave(key)` grava; "Pular" avança sem gravar (só intro e uso não têm pular). Progresso em `S.onb = {done, step}`.
 - Na etapa de extrato, a importação usa o mesmo fluxo do botão + (`ui.forceAcc` pré-seleciona o banco) e volta para o assistente.
 
 ## Família

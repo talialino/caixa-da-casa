@@ -135,6 +135,8 @@ button.tx:hover{background:var(--soft)}
 .amt.pos{color:var(--ok)}
 .badge{font-size:10.5px;font-weight:800;letter-spacing:.04em;background:var(--blush);color:var(--accent);padding:2px 6px;border-radius:6px;margin-left:6px;vertical-align:1px}
 .tx.off{opacity:.4}
+.tx.proj{opacity:.72}
+.tx.proj .amt{font-style:italic}
 
 /* chips de banco */
 .chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;margin:0 -2px;scrollbar-width:none}
@@ -250,7 +252,7 @@ details.faq p b{color:var(--ink)}
 /* navegação */
 .nav{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);box-shadow:0 -6px 24px rgba(0,0,0,.06);padding-bottom:env(safe-area-inset-bottom,0px);border-radius:24px 24px 0 0}
 .nav-in{max-width:520px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 72px 1fr 1fr;align-items:center}
-.nav button{border:0;background:none;padding:10px 2px 9px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11.5px;font-weight:800;color:var(--muted)}
+.nav button{border:0;background:none;padding:10px 2px 9px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11.5px;font-weight:800;color:var(--muted);cursor:pointer}
 .nav button svg{width:22px;height:22px}
 .nav button.on{color:var(--accent)}
 .nav .plus{width:58px;height:58px;border-radius:50%;border:4px solid var(--bg)!important;background:var(--accent);color:var(--accent-ink);margin:-22px auto 0;padding:0;justify-content:center;box-shadow:0 8px 20px rgba(196,86,124,.35)}
@@ -397,8 +399,66 @@ ol.steps{margin:0;padding-left:20px;font-size:14.5px;display:flex;flex-direction
 .bn-row:first-of-type{border-top:0;padding-top:0}
 .bn-row input[type=text],.bn-row input[type=number]{padding:9px 10px;font-size:15px;border-radius:14px}
 .bn-row .toggle{grid-column:1/-1}
-</style>
 
+/* resumo do mês */
+.home-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.home-grid:empty{display:none}
+.home-top{display:grid;grid-template-columns:1fr;gap:16px}
+.sum{display:flex;flex-direction:column;gap:2px}
+.sum-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding-bottom:10px;margin-bottom:4px;border-bottom:1.5px solid var(--line)}
+.sum-h span{font-family:var(--f-display);font-weight:600;font-size:20px}
+.sum-h b{font-family:var(--f-display);font-weight:600;font-size:26px}
+.sum.in .sum-h b{color:var(--ok)}
+.sl{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:7px 0;font-size:14.5px}
+.sl span{min-width:0}
+.sl b{font-weight:700;white-space:nowrap}
+.sl.zero{color:var(--muted)}
+.sl.zero b{font-weight:600}
+.sl.sep{border-top:1px dashed var(--line);margin-top:6px;padding-top:12px}
+.sl small{font-size:12.5px}
+.sum .tiny{margin-top:2px}
+b.neg{color:var(--bad)}
+.verdict .lt{margin-top:10px;padding-top:10px;border-top:1px dashed color-mix(in srgb,var(--ink) 18%,transparent);display:flex;flex-direction:column;gap:8px}
+.verdict .lt p{font-size:13.5px}
+.seg.scroll{overflow-x:auto;scrollbar-width:none;grid-auto-columns:minmax(max-content,1fr)}
+.seg.scroll::-webkit-scrollbar{display:none}
+.seg.scroll button{padding-inline:12px;white-space:nowrap}
+.tx-list.flat{box-shadow:none;background:transparent}
+.tx-list.flat .tx{padding-inline:0}
+.d-only{display:none!important}
+.nav-brand{align-items:center;gap:10px;padding:4px 8px 16px}
+.nav-brand svg{width:44px;height:auto}
+.nav-brand b{font-family:var(--f-display);font-weight:600;font-size:19px}
+@media (min-width:960px){
+  .d-only{display:flex!important}
+  .m-only{display:none!important}
+  body{font-size:15px}
+  .app{max-width:1080px;margin:0 0 0 260px;padding-inline:36px;padding-block:8px 48px}
+  @media (min-width:1400px){.app{margin-left:calc(260px + (100vw - 260px - 1080px)/2)}}
+  .top{padding-block:24px 18px}
+  .hello b{font-size:28px}
+  .nav{top:0;bottom:0;left:0;right:auto;width:236px;border-radius:0 28px 28px 0;padding:24px 14px;box-shadow:6px 0 30px color-mix(in srgb,var(--accent) 10%,transparent)!important;overflow-y:auto}
+  .nav-in{display:flex;flex-direction:column;gap:4px;max-width:none;height:auto}
+  .nav button{flex-direction:row;justify-content:flex-start;gap:12px;font-size:15px;padding:11px 14px;border-radius:14px;width:100%}
+  .nav button span{display:inline}
+  .nav button:hover{background:var(--soft)}
+  .nav button.on{background:var(--soft);color:var(--accent)}
+  .nav .plus{width:100%;height:auto;border-radius:999px;margin:0 0 14px;padding:12px 16px;justify-content:center;border:0!important;font-size:15px;order:0}
+  .nav .plus svg{width:20px;height:20px}
+  .nav-brand{order:-1}
+  .home-grid{grid-template-columns:1fr 1fr;align-items:start}
+  .home-top{grid-template-columns:1.1fr 1fr;align-items:stretch}
+  .home-top .verdict{height:100%}
+  .sheet-wrap{align-items:center;padding:24px}
+  .sheet{border-radius:26px;max-height:88vh;max-width:560px}
+  .sheet::before{display:none}
+  .toast{bottom:32px}
+  .screen-in{max-width:620px}
+  .tx-list{max-width:none}
+}
+.verdict p b{display:inline;font-size:inherit}
+.sl .mo{text-transform:capitalize}
+</style>
 </head>
 <body>
 <div class="app" id="app"></div>
@@ -431,28 +491,33 @@ const RULES={
 
 /* ============ categorias ============ */
 const CATS=[
- {id:"mercado",n:"Mercado",t:"out",k:["assai","atacadao","atakarejo","carrefour","gbarbosa","g barbosa","pao de acucar","supermerc","hipermerc","mercadinho","rede mix","bompreco","hortifruti","sacolao","mercado "]},
- {id:"alimentacao",n:"Comida fora",t:"out",k:["ifood","rappi","restaurante","lanchonete","padaria","panificadora","burger","mcdonald","pizza","acaraje","churrasc","sorvete","cafeteria","cafe ","bar ","delivery","subway","habib","outback","coco bambu"]},
- {id:"transporte",n:"Transporte",t:"out",k:["uber","99app","99 pop","99pop","99 tecnologia","posto","combustiv","gasolina","shell","ipiranga","br mania","estacionamento","metro ","ccr metro","salvador card","onibus","pedagio","sem parar","conectcar","indriver"]},
+ {id:"dividas",n:"Dívidas e financiamentos",t:"out",k:["financiamento","financ ","consorcio","emprestimo","prestacao","juros","iof","cheque especial","rotativo","encargo","juros de mora","multa por atraso","parcelamento de fatura","habitac","mrv","incorporac","credito pessoal","consignado"]},
+ {id:"investimento",n:"Guardado e investido",t:"out",k:["aplicacao","aplic ","cdb","poupanca","tesouro direto","investimento","porquinho","cofrinho","caixinha","lci","lca","fundo de invest","corretora"]},
+ {id:"mercado",n:"Mercado",t:"out",k:["assai","atacadao","atakarejo","atakadao","carrefour","gbarbosa","g barbosa","pao de acucar","supermerc","hipermerc","mercadinho","rede mix","bompreco","hortifruti","sacolao","mercado ","cogeali","generos alimenticios"]},
+ {id:"alimentacao",n:"Comida fora",t:"out",k:["ifood","rappi","restaurante","lanchonete","padaria","panificadora","doce pao","burger","mcdonald","pizza","acaraje","churrasc","sorvete","cafeteria","cafe ","bar ","delivery","subway","habib","outback","coco bambu","cacau show","delicias","bufalogril"]},
+ {id:"transporte",n:"Transporte",t:"out",k:["uber","99app","99 pop","99pop","99 tecnologia","posto","combustiv","gasolina","shell","ipiranga","br mania","estacionamento","metro ","ccr metro","salvador card","onibus","pedagio","sem parar","conectcar","indriver","seguro auto"]},
  {id:"moradia",n:"Moradia",t:"out",k:["aluguel","condominio","iptu","imobiliaria"]},
  {id:"contas",n:"Contas da casa",t:"out",k:["coelba","neoenergia","embasa","energia","agua e esgoto","gas ","vivo","claro","tim ","internet","fibra","telefonica","sky "]},
- {id:"saude",n:"Saúde e beleza",t:"out",k:["farmacia","drogasil","drogaria","pague menos","raia","hospital","clinica","unimed","hapvida","sulamerica","laborat","dentist","odonto","consulta","academia","smartfit","smart fit","salao","manicure","estetica","boticario","natura","sephora"]},
+ {id:"saude",n:"Saúde e beleza",t:"out",k:["farmacia","drogasil","drogaria","pague menos","paguemenos","raia","hospital","clinica","unimed","hapvida","sulamerica","laborat","dentist","odonto","consulta","academia","smartfit","smart fit","salao","manicure","estetica","boticario","natura","sephora","plano de saude"]},
  {id:"assinaturas",n:"Assinaturas",t:"out",k:["netflix","spotify","amazon prime","prime video","disney","hbo","max.com","youtube","apple.com","icloud","google one","globoplay","deezer","chatgpt","openai","anthropic","claude.ai","adobe","canva","notion","figma","paramount","crunchyroll"]},
- {id:"compras",n:"Compras",t:"out",k:["shopee","mercado livre","mercadolivre","amazon","magalu","magazine luiza","americanas","shein","renner","riachuelo","c&a","cea ","zara","aliexpress","casas bahia","centauro","netshoes"]},
+ {id:"compras",n:"Compras",t:"out",k:["shopee","mercado livre","mercadolivre","amazon","magalu","magazine luiza","americanas","shein","renner","riachuelo","c&a","cea ","zara","aliexpress","casas bahia","centauro","netshoes","tiktok shop","formaturas"]},
  {id:"lazer",n:"Lazer",t:"out",k:["cinema","cinemark","ingresso","sympla","eventim","show","steam","playstation","xbox","teatro","parque","viagem","hotel","airbnb","booking","latam","gol linhas","azul linhas"]},
- {id:"educacao",n:"Educação",t:"out",k:["ufba","ifba","curso","udemy","alura","coursera","livraria","escola","faculdade","mensalidade"]},
- {id:"impostos",n:"Impostos e taxas",t:"out",k:[" das ","das mei","das-mei","simples nacional","pgmei","receita federal","darf","tarifa","anuidade","iof"]},
+ {id:"educacao",n:"Educação",t:"out",k:["curso","udemy","alura","coursera","livraria","escola","faculdade","mensalidade"]},
+ {id:"impostos",n:"Impostos e taxas",t:"out",k:[" das ","das mei","das-mei","simples nacional","pgmei","receita federal","darf","tarifa","anuidade"]},
  {id:"transf",n:"Pix para pessoas",t:"out",k:["pix","transferencia","ted ","doc ","transf"]},
- {id:"outros",n:"Outros",t:"out",k:[]},
- {id:"mei",n:"Ganhos do MEI",t:"in",k:[]},
+ {id:"outros",n:"Outros gastos",t:"out",k:[]},
  {id:"salario",n:"Salário",t:"in",k:["salario","folha","proventos","remuneracao","adiantamento salarial"]},
- {id:"renda",n:"Outras entradas",t:"in",k:[]},
+ {id:"resgate",n:"Resgate de investimento",t:"in",k:["resgate","resg "]},
+ {id:"aux_empresa",n:"Auxílios da empresa",t:"in",k:["auxilio alimentacao","auxilio refeicao","vale alimentacao","vale refeicao","auxilio home","ajuda de custo","auxilio incentivo","reembolso plano"]},
+ {id:"aux_gov",n:"Auxílios do governo",t:"in",k:["bolsa familia","auxilio brasil","inss","seguro desemprego","pis pasep","pis/pasep","fgts","ordem bancaria","universidade federal","bolsa ","tesouro nacional","pe de meia","pe-de-meia","governo","prefeitura","secretaria"]},
+ {id:"mei",n:"Ganhos do MEI",t:"in",k:[]},
+ {id:"renda",n:"Outros ganhos",t:"in",k:[]},
  {id:"propria",n:"Entre minhas contas",t:"both",k:[]},
  {id:"familia",n:"Entre a família",t:"both",k:[]}
 ];
 const CAT={};CATS.forEach(c=>CAT[c.id]=c);
 const OUT_CATS=CATS.filter(c=>c.t==="out"), IN_CATS=CATS.filter(c=>c.t==="in");
-const OWN_KW=["pix no credito","credito liberado","mesma titularidade","conta propria","contas proprias","entre contas","transf propria","transferencia propria","para minha conta","aplicacao","resgate","pagamento de fatura","pagamento fatura","pagto fatura","pag fatura","cofrinho","caixinha","porquinho"];
+const OWN_KW=["pix no credito","credito liberado","mesma titularidade","conta propria","contas proprias","entre contas","transf propria","transferencia propria","para minha conta","pagamento de fatura","pagamento fatura","pagto fatura","pag fatura"];
 
 /* ============ bancos ============ */
 const BANKS=[
@@ -483,7 +548,14 @@ const BANKS=[
  {id:"agibank",n:"Agibank",k:["agibank","agiplan"]},
  {id:"bs2",n:"BS2",k:["banco bs2"]},
  {id:"recargapay",n:"RecargaPay",k:["recargapay"]},
- {id:"swile",n:"Swile",k:["swile","multibeneficios"]},
+ {id:"swile",n:"Swile",k:["swile","multibeneficios"],ben:1},
+ {id:"caju",n:"Caju",k:["caju"],ben:1},
+ {id:"vr",n:"VR",k:["vr beneficios","vr refeicao","vr alimentacao"],ben:1},
+ {id:"alelo",n:"Alelo",k:["alelo"],ben:1},
+ {id:"flash",n:"Flash",k:["flash beneficios","flash app"],ben:1},
+ {id:"ticket",n:"Ticket",k:["ticket alimentacao","ticket restaurante","ticket edenred"],ben:1},
+ {id:"pluxee",n:"Pluxee",k:["pluxee","sodexo"],ben:1},
+ {id:"ifoodben",n:"iFood Benefícios",k:["ifood beneficios"],ben:1},
  {id:"portoseguro",n:"Porto Seguro",k:["porto seguro","portoseguro"]}
 ];
 
@@ -537,18 +609,19 @@ const dmy=d=>d.split("-").reverse().join("/");
 /* ============ estado ============ */
 let S=null;
 const ui={who:"all",tab:"inicio",month:thisYM(),q:"",fAcc:"",plan:"orcamento",meiYear:thisY(),imp:null,regFound:null,screen:null,wz:0,forceAcc:null};
-function blank(){return{v:2,profile:{name:""},accounts:[],tx:[],budgets:{},bills:[],goals:[],rules:{},
-  mei:{on:false,open:"",teto:RULES.meiTeto,clients:{},notClients:{},das:{},salaryManual:null},regBanks:[],onb:{done:false,step:0},showWelcome:true,people:[],deviceId:uid(),look:{palette:"rosa",mode:"auto"},benefits:{on:false,card:"Swile",since:"",items:[],machine:false,accId:"",skip:{}},pet:{animal:"pig",bodyColor:"",spots:false,top:"",topColor:"#f4a7bb",pants:false,pantsColor:"#8fb3e8",shoes:"",shoesColor:"#ffffff",hair:"",hairColor:"#5b3a29"},demo:false,updatedAt:Date.now()}}
+function blank(){return{v:3,profile:{name:""},accounts:[],tx:[],budgets:{},bills:[],goals:[],rules:{},
+  mei:{on:false,open:"",teto:RULES.meiTeto,clients:{},notClients:{},das:{},salaryManual:null},regBanks:[],onb:{done:false,step:0},showWelcome:true,people:[],deviceId:uid(),look:{palette:"rosa",mode:"auto"},benefits:{on:false,card:"Swile",since:"",items:[],machine:false,accId:"",skip:{}},salary:{amount:0,payer:"",day:5,mei:false},machine:{has:null,own:"no"},saveGoal:10,pet:{animal:"pig",bodyColor:"",spots:false,top:"",topColor:"#f4a7bb",pants:false,pantsColor:"#8fb3e8",shoes:"",shoesColor:"#ffffff",hair:"",hairColor:"#5b3a29"},demo:false,updatedAt:Date.now()}}
 function migrate(s){
   const b=blank();
   for(const k in b)if(s[k]===undefined)s[k]=b[k];
   s.mei=Object.assign({},b.mei,s.mei||{});
   s.benefits=Object.assign({},b.benefits,s.benefits||{});if(s.benefits.machine&&s.mei&&s.mei.machineOwn===undefined){s.mei.machineOwn=true}s.look=Object.assign({},b.look,s.look||{});if(s.look.palette==="terra")s.look.palette="terracota";s.pet=Object.assign({},b.pet,s.pet||{});
   s.profile=Object.assign({},b.profile,s.profile||{});
-  s.accounts.forEach(a=>{if(!a.owner)a.owner="me";if(!a.type)a.type="pf";if(a.bank===undefined){const f=findBanks(a.name)[0];a.bank=f?f.id:""}});
-  if(!s.v||s.v<2){s.tx.forEach(t=>{t.cat=categorize(t.desc,t.amount,t.acc,s)})}
+  s.salary=Object.assign({},b.salary,s.salary||{});s.machine=Object.assign({},b.machine,s.machine||{});if(s.mei&&s.mei.machineOwn&&s.machine.own==="no")s.machine.own="benefit";if(s.saveGoal==null)s.saveGoal=10;
+  s.accounts.forEach(a=>{if(!a.kind)a.kind="conta";if(!a.owner)a.owner="me";if(!a.type)a.type="pf";if(a.bank===undefined){const f=findBanks(a.name)[0];a.bank=f?f.id:""}});
+  if(!s.v||s.v<3){s.tx.forEach(t=>{if(!t.manualCat&&!(s.rules&&s.rules[ruleKey(t.desc)]))t.cat=categorize(t.desc,t.amount,t.acc,s,t.owner)})}
   if(!s.onb)s.onb={done:false,step:0};if(s.showWelcome===undefined)s.showWelcome=true;
-  s.v=2;return s;
+  s.v=3;return s;
 }
 function load(){
   try{const raw=localStorage.getItem(KEY);if(raw){S=migrate(JSON.parse(raw));return}}catch(e){}
@@ -591,45 +664,59 @@ function categorize(desc,amount,accId,st,ownerHint){
   const key=ruleKey(desc);
   if(st.rules&&st.rules[key])return st.rules[key];
   const ac=(st.accounts||[]).find(x=>x.id===accId);const owner=(ac&&ac.owner)||ownerHint||"me";
-  if(amount>0&&st.mei&&st.mei.machineOwn&&MACHINE_RE.test(norm(desc)))return"propria";
+  const d=" "+norm(desc)+" ";
+  if(amount>0&&MACHINE_RE.test(d)){const m=st.machine||{};if(m.own==="bank")return"propria";return(st.mei&&st.mei.on&&owner==="me")?"mei":"renda"}
+  if(amount>0&&st.salary&&st.salary.payer&&norm(st.salary.payer).length>2&&d.includes(norm(st.salary.payer)))return"salario";
   if(isOwnText(desc,st,nameOf(st,owner)))return"propria";
   if(isFamilyText(desc,st,owner))return"familia";
-  const d=" "+norm(desc)+" ";
   if(amount>=0){
-    const a=(st.accounts||[]).find(x=>x.id===accId);
+    if(/devolvid|estorno|devolucao|reembolso|cashback/.test(d))return"renda";
     for(const c of IN_CATS)for(const k of c.k)if(d.includes(k))return c.id;
-    if(a&&a.type==="pj"&&!/rendimento|estorno|devolucao|cashback|reembolso/.test(d))return"mei";
+    if(ac&&ac.type==="pj"&&!/rendimento/.test(d))return"mei";
     return"renda";
   }
   for(const c of OUT_CATS)for(const k of c.k)if(d.includes(k))return c.id;
   return"outros";
 }
 function meiClass(t){
-  if(t.amount<=0||ownerOf(t)!=="me")return"no";
+  if(t.amount<=0||ownerOf(t)!=="me"||t.proj)return"no";
   if(t.mei===true)return"mei";if(t.mei===false)return"no";
-  if(MACHINE_RE.test(norm(t.desc)))return S.mei.machine===false?"no":"mei";
-  if(t.cat==="propria"||t.cat==="familia")return"no";
+  if(MACHINE_RE.test(norm(t.desc))){if(t.cat==="propria")return"no";return S.mei.machine===false?"no":"mei"}
+  if(t.cat==="propria"||t.cat==="familia"||t.cat==="resgate"||t.cat==="aux_gov"||t.cat==="aux_empresa")return"no";
   const d=norm(t.desc);
   if(/rendimento|estorno|devolucao|devolvid|cashback|reembolso|resgate|credito liberado|pix no credito|parcelamento/.test(d))return"no";
   const a=acc(t.acc);
   if(a&&a.kind==="beneficio")return"no";
   if(a&&a.type==="pj")return"mei";
   if(t.cat==="mei")return"mei";
+  if(t.cat==="salario")return S.salary&&S.salary.mei?"mei":"no";
   const pk=payerKey(t.desc);
   if(pk&&S.mei.clients[pk])return"mei";
   if(pk&&S.mei.notClients[pk])return"no";
-  if(t.cat==="salario")return"no";
   if(t.amount<20)return"no";
   return"maybe";
 }
-const isCardPayment=t=>/pagamento (de )?fatura|pagto fatura|pag fatura|pagamento recebido/.test(norm(t.desc));
-const counts=t=>t.cat!=="propria"&&!isCardPayment(t)&&!(t.cat==="familia"&&ui.who==="all");
+const isCardPayment=t=>/pagamento (de )?fatura|pagto fatura|pag fatura|pagamento recebido|portoseg|pagamento de cartao|pagamento cartao/.test(norm(t.desc));
+const accKind=t=>{const a=acc(t.acc);return a?(a.kind||"conta"):"conta"};
+const isBen=t=>accKind(t)==="beneficio";
+const counts=t=>t.cat!=="propria"&&!isCardPayment(t)&&!(t.cat==="familia"&&ui.who==="all")&&!isBen(t);
 const inScope=t=>ui.who==="all"||ownerOf(t)===ui.who;
-function recatPeople(){S.tx.forEach(t=>{if(["propria","familia","transf","renda","outros"].includes(t.cat)&&!S.rules[ruleKey(t.desc)]){t.cat=categorize(t.desc,t.amount,t.acc,S,t.owner)}})}
+function recatPeople(){S.tx.forEach(t=>{if(["propria","familia","transf","renda","outros","salario","mei"].includes(t.cat)&&!S.rules[ruleKey(t.desc)]&&!t.manualCat){t.cat=categorize(t.desc,t.amount,t.acc,S,t.owner)}})}
 
 /* ============ cálculos ============ */
 const txOf=ym=>S.tx.filter(t=>t.date.slice(0,7)===ym&&inScope(t));
-function totals(ym){let inc=0,out=0;for(const t of txOf(ym)){if(!counts(t))continue;if(t.amount>=0)inc+=t.amount;else out+=-t.amount}return{inc,out,bal:inc-out}}
+const INC_GROUP={salario:"salario",aux_empresa:"aux_empresa",aux_gov:"aux_gov",resgate:"resgate"};
+function monthSum(ym){
+  const r={inc:0,out:0,inv:0,proj:0,g:{salario:0,aux_empresa:0,aux_gov:0,resgate:0,ganhos:0},o:{cartao:0,contas:0,dividas:0}};
+  for(const t of txOf(ym)){if(!counts(t))continue;const a=t.amount;
+    if(a>0){r.inc+=a;r.g[INC_GROUP[t.cat]||"ganhos"]+=a;continue}
+    const v=-a;if(t.cat==="investimento"){r.inv+=v;continue}
+    r.out+=v;if(t.proj)r.proj+=v;
+    if(accKind(t)==="cartao")r.o.cartao+=v;else if(t.cat==="dividas")r.o.dividas+=v;else r.o.contas+=v;
+  }
+  r.bal=r.inc-r.out-r.inv;r.invNet=r.inv-r.g.resgate;return r;
+}
+function totals(ym){const r=monthSum(ym);return{inc:r.inc,out:r.out+r.inv,bal:r.bal}}
 function byCat(ym){const m={};for(const t of txOf(ym))if(t.amount<0&&counts(t))m[t.cat]=(m[t.cat]||0)-t.amount;return Object.entries(m).sort((a,b)=>b[1]-a[1])}
 function budgetRows(ym){const bc=Object.fromEntries(byCat(ym));return Object.entries(S.budgets).filter(([,v])=>v>0).map(([cat,lim])=>{const sp=bc[cat]||0,p=sp/lim;return{cat,lim,sp,p,st:p>=1?"bad":p>=.8?"warn":"ok"}}).sort((a,b)=>b.p-a.p)}
 function billStatus(b,ym){
@@ -658,7 +745,7 @@ function meiYear(year){
     if(t.date.slice(0,4)!==ys||ownerOf(t)!=="me")continue;
     const a=acc(t.acc);
     if(t.amount<0){if(a&&a.type==="pj"&&t.cat!=="propria"&&t.cat!=="familia"&&!isCardPayment(t))desp+=-t.amount;continue}
-    if(t.cat==="salario")salary+=t.amount;
+    if(t.cat==="salario"&&!(S.salary&&S.salary.mei))salary+=t.amount;
     const c=meiClass(t);
     if(c==="mei"){months[+t.date.slice(5,7)-1]+=t.amount;total+=t.amount;if(a&&a.type==="pj")pj+=t.amount;else pf+=t.amount}
     else if(c==="maybe"){maybe+=t.amount;maybeN++}
@@ -752,6 +839,8 @@ const I={
   alert:sv('<path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>'),
   info:sv('<circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/>'),
   heart:sv('<path d="M12 20.5S3 15 3 8.8A4.6 4.6 0 0 1 12 6.7a4.6 4.6 0 0 1 9 2.1C21 15 12 20.5 12 20.5z"/>'),
+  card:sv('<rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6 15h4"/>'),
+  dots:sv('<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>'),
   sparkle:sv('<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/>')
 };
 const catIco=id=>{const c=CAT[id]||CAT.outros;return'<span class="cat-ico" aria-hidden="true">'+esc(c.n.slice(0,1))+'</span>'};
@@ -760,17 +849,25 @@ const catIco=id=>{const c=CAT[id]||CAT.outros;return'<span class="cat-ico" aria-
 function render(){
   const app=$("#app");
   const h=new Date().getHours(),greet=h<12?"Bom dia":h<18?"Boa tarde":"Boa noite";
-  const showMonth=ui.tab==="inicio"||ui.tab==="extrato"||(ui.tab==="planejar"&&ui.plan!=="metas");
-  const head='<header class="top"><div class="hello"><small>'+greet+(S.profile.name?", "+esc(S.profile.name.split(" ")[0]):"")+'</small><b>'+({inicio:"Seu mês",extrato:"Extrato",mei:"Meu MEI",planejar:"Planejar"}[ui.tab])+'</b></div>'+
+  const meiTab=!(S.mei.declined&&!S.mei.on);if(ui.tab==="mei"&&!meiTab)ui.tab="inicio";
+  const showMonth=["inicio","extrato","beneficio"].includes(ui.tab)||(ui.tab==="planejar"&&ui.plan==="contas");
+  const titles={inicio:"Seu mês",extrato:"Extrato",mei:"Meu MEI",planejar:"Planejar",beneficio:"Benefício"};
+  const head='<header class="top"><div class="hello"><small>'+greet+(S.profile.name?", "+esc(S.profile.name.split(" ")[0]):"")+'</small><b>'+titles[ui.tab]+'</b></div>'+
    (showMonth?'<div class="month"><button class="icon-btn" data-act="mPrev" aria-label="Mês anterior">'+I.l+'</button><span>'+esc(monthLabel(ui.month))+'</span><button class="icon-btn" data-act="mNext" aria-label="Próximo mês">'+I.r+'</button></div>':"")+
    (ui.tab==="mei"&&S.mei.on?'<div class="month"><button class="icon-btn" data-act="yPrev" aria-label="Ano anterior">'+I.l+'</button><span>'+ui.meiYear+'</span><button class="icon-btn" data-act="yNext" aria-label="Próximo ano">'+I.r+'</button></div>':"")+
-   '<button class="icon-btn" data-act="welcome" aria-label="Tela de entrada e primeiros passos">'+I.heart+'</button><button class="icon-btn" data-act="settings" aria-label="Ajustes">'+I.gear+'</button></header>';
-  if(ui.tab==="mei"&&S.mei.declined&&!S.mei.on)ui.tab="inicio";
-  const body={inicio:vHome,extrato:vTx,mei:vMei,planejar:vPlan}[ui.tab]();
+   '<button class="icon-btn m-only" data-act="welcome" aria-label="Tela de entrada e primeiros passos">'+I.heart+'</button><button class="icon-btn m-only" data-act="settings" aria-label="Ajustes">'+I.gear+'</button></header>';
+  const body={inicio:vHome,extrato:vTx,mei:vMei,planejar:vPlan,beneficio:vBen}[ui.tab]();
   app.innerHTML=head+(storageOk?"":'<div class="note bad" style="margin-bottom:12px"><span class="ic">'+I.alert+'</span><div>Este navegador não está salvando os dados. Gere um backup em Ajustes antes de fechar.</div></div>')+body;
-  const meiTab=!(S.mei.declined&&!S.mei.on);if(ui.tab==="mei"&&!meiTab)ui.tab="inicio";
-  const tab=(id,label,ic)=>'<button data-act="tab" data-v="'+id+'" class="'+(ui.tab===id?"on":"")+'">'+ic+label+'</button>';
-  $("#nav").innerHTML='<div class="nav-in">'+tab("inicio","Início",I.home)+tab("extrato","Extrato",I.list)+'<button class="plus" data-act="add" aria-label="Adicionar">'+I.plus+'</button>'+(meiTab?tab("mei","MEI",I.mei):'<button data-act="settings">'+I.gear+'Ajustes</button>')+tab("planejar","Planejar",I.plan)+'</div>';
+  const tab=(id,label,ic,cls)=>'<button data-act="tab" data-v="'+id+'" class="'+(ui.tab===id?"on ":"")+(cls||"")+'">'+ic+'<span>'+label+'</span></button>';
+  $("#nav").innerHTML='<div class="nav-in">'+
+   '<div class="nav-brand d-only">'+petSVG(null,"")+'<b>Caixa da Casa</b></div>'+
+   tab("inicio","Início",I.home)+tab("extrato","Extrato",I.list)+
+   '<button class="plus" data-act="add" aria-label="Adicionar">'+I.plus+'<span class="d-only">Adicionar</span></button>'+
+   tab("planejar","Planejar",I.plan)+
+   tab("beneficio","Benefício",I.card,"d-only")+(meiTab?tab("mei","MEI",I.mei,"d-only"):"")+
+   '<button class="d-only" data-act="settings">'+I.gear+'<span>Ajustes</span></button><button class="d-only" data-act="lookOpen">'+I.sparkle+'<span>Aparência</span></button><button class="d-only" data-act="welcome">'+I.heart+'<span>Primeiros passos</span></button>'+
+   '<button class="m-only'+(["mei","beneficio"].includes(ui.tab)?" on":"")+'" data-act="mais">'+I.dots+'<span>Mais</span></button>'+
+  '</div>';
 }
 function demoBanner(){return S.demo&&ui.tab!=="inicio"?'<button class="note ok" data-act="wzStart"><span class="ic">'+I.sparkle+'</span><div><b>Estes são dados de exemplo.</b> Toque aqui para os primeiros passos.</div></button>':""}
 const note=(cls,ic,html,act,id)=>'<button class="note '+cls+'"'+(act?' data-act="'+act+'"':"")+(id?' data-id="'+id+'"':"")+'><span class="ic">'+ic+'</span><div>'+html+'</div></button>';
@@ -784,7 +881,7 @@ function homeNotes(){
     if(m.maybeN)out.push(note("",I.sparkle,"<b>"+m.maybeN+" entrada"+(m.maybeN>1?"s":"")+"</b> na conta pessoal pode"+(m.maybeN>1?"m":"")+" ser do MEI. Confirme em um toque.","review"));
   }
   if(ym===thisYM())S.bills.filter(b=>ui.who==="all"||b.owner==="shared"||(b.owner||"me")===ui.who).forEach(b=>{const s=billStatus(b,ym);if(s.st==="bad"||s.st==="warn")out.push(note(s.st==="bad"?"bad":"",I.info,"<b>"+esc(b.name)+"</b> · "+money(b.amount)+" · "+s.txt.toLowerCase(),"tabPlan","contas"))});
-  budgetRows(ym).forEach(b=>{if(b.st==="bad")out.push(note("bad",I.alert,"<b>"+esc(CAT[b.cat].n)+"</b> passou do limite do mês","tabPlan","orcamento"))});
+  budgetRows(ym).forEach(b=>{if(b.st==="bad")out.push(note("bad",I.alert,"<b>"+esc(CAT[b.cat].n)+"</b> passou do limite do mês","tabPlan","metas"))});
   S.accounts.filter(a=>(a.owner||"me")==="me"&&a.kind!=="beneficio").forEach(a=>{const l=lastDate(a.id);if(l&&daysBetween(l,today())>25)out.push(note("",I.bank,"O extrato do <b>"+esc(a.name)+"</b> está parado desde "+dmy(l)+". Traga o novo.","add"))});
   return out.slice(0,3);
 }
@@ -802,25 +899,9 @@ function familyCard(ym){
   return '<section class="card"><div class="sec-h"><h2>Cada um no mês</h2></div><div class="rows">'+members().map(m=>{const t=totalsOf(ym,m);const bills=S.bills.reduce((a,b)=>a+billShare(b,m),0);const open=S.bills.filter(b=>!(b.paid&&b.paid[ym])).reduce((a,b)=>a+billShare(b,m),0);
     return'<button class="who-row" data-act="who" data-v="'+m+'"><span class="cat-ico">'+esc(firstOf(m).slice(0,1))+'</span><span class="mid"><b>'+esc(firstOf(m))+'</b><small class="num">Entrou '+money(t.inc)+' · Saiu '+money(t.out)+'</small>'+(bills?'<small class="num">Contas fixas '+money(bills)+(open>0.009?' · falta '+money(open):' · tudo pago')+'</small>':"")+'</span>'+I.r+'</button>'}).join("")+'</div><p class="tiny muted" style="margin-top:10px">Pix entre vocês aparece na conta de cada um, mas não entra no total da família. Contas divididas contam metade para cada.</p></section>';
 }
-function vHome(){
-  const ym=ui.month,t=totals(ym),cats=byCat(ym),top=cats.slice(0,4),mx=top.length?top[0][1]:1;
-  const recent=[...txOf(ym)].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,4);
-  const notes=homeNotes();
-  let mei="";
-  if(S.mei.on){const m=meiYear(thisY());const pc=Math.round(m.p*100);
-    mei='<button class="card mini" data-act="tab" data-v="mei"><div class="mini-h"><b>MEI em '+thisY()+'</b><span class="pill '+m.st+'">'+(m.p>1?"Passou do limite":m.st==="warn"?"Fique de olho":"Tudo certo")+'</span></div><div class="prog '+m.st+'"><i style="width:'+Math.min(pc,100)+'%"></i></div><div class="small muted num">'+money(m.total)+' de '+kfmt(m.teto)+' · '+pc+'% do limite</div></button>'}
-  return '<div class="stack">'+demoBanner()+
-   whoBar()+'<section class="hero pet">'+'<button class="hero-pet" data-act="petOpen" aria-label="Vestir o mascote">'+petSVG(null,"")+'</button>'+'<div class="lbl">'+(t.bal>=0?"Sobrou":"Faltou")+(S.people.length?(ui.who==="all"?" para a família":" para "+esc(firstOf(ui.who))):"")+" em "+esc(monthName(ym))+'</div><div class="big num">'+money(Math.abs(t.bal))+'</div><div class="hero-row"><span><i class="dot" style="background:var(--ok)"></i>Entrou <b class="num">'+money(t.inc)+'</b></span><span><i class="dot" style="background:var(--terra)"></i>Saiu <b class="num">'+money(t.out)+'</b></span></div></section>'+
-   (notes.length?'<section class="notes">'+notes.join("")+'</section>':"")+
-   familyCard(ym)+(ui.who==="all"||ui.who==="me"?mei:"")+
-   (top.length?'<section class="card"><div class="sec-h"><h2>Onde mais gastou</h2></div><div class="rows">'+top.map(([c,v])=>'<div class="hbar"><span>'+esc(CAT[c]?CAT[c].n:c)+'</span><b class="num">'+money(v)+'</b><div class="prog"><i style="width:'+(v/mx*100)+'%"></i></div></div>').join("")+'</div></section>':"")+
-   '<section><div class="sec-h"><h2>Últimos lançamentos</h2><button class="link" data-act="tab" data-v="extrato">Ver tudo</button></div>'+(recent.length?'<div class="tx-list">'+recent.map(txRow).join("")+'</div>':'<div class="card empty">Nada por aqui ainda.<br>Toque no <b>+</b> para trazer o extrato do banco.</div>')+'</section>'+
-  '</div>';
-}
-
 function txRow(t){
   const c=t.amount>0&&S.mei.on?meiClass(t):"";
-  return '<button class="tx" data-act="editTx" data-id="'+t.id+'">'+catIco(t.cat)+'<div class="mid"><b>'+esc(t.desc)+(c==="mei"?'<span class="badge">MEI</span>':"")+'</b><small>'+esc(CAT[t.cat]?CAT[t.cat].n:"Outros")+' · '+esc(accName(t.acc))+'</small></div><span class="amt num'+(t.amount>0?" pos":"")+'">'+(t.amount<0?"− ":"+ ")+money(Math.abs(t.amount))+'</span></button>';
+  return '<button class="tx'+(t.proj?" proj":"")+'" data-act="editTx" data-id="'+t.id+'">'+catIco(t.cat)+'<div class="mid"><b>'+esc(t.desc)+(c==="mei"?'<span class="badge">MEI</span>':"")+(t.proj?'<span class="badge">previsto</span>':"")+(t.selfMachine?'<span class="badge">maquininha</span>':"")+'</b><small>'+esc(CAT[t.cat]?CAT[t.cat].n:"Outros")+' · '+esc(accName(t.acc))+'</small></div><span class="amt num'+(t.amount>0?" pos":"")+'">'+(t.amount<0?"− ":"+ ")+money(Math.abs(t.amount))+'</span></button>';
 }
 
 function bankChips(){
@@ -881,7 +962,7 @@ function vMei(){
      '</div><p class="tiny muted" style="margin-top:10px">Estimativa com as regras de 2026: sem imposto até R$ 60 mil por ano em rendimentos tributáveis e desconto até R$ 88,2 mil (Lei 15.270/2025). Não substitui um contador.</p></section>'+
    (S.benefits.on?'<button class="card mini" data-act="bnOpen"><div class="mini-h"><b>Benefícios no '+esc(S.benefits.card||"Swile")+'</b><span class="pill ok">automático</span></div><div class="small muted num">'+money(S.benefits.items.reduce((a,b)=>a+(b.amount||0),0))+' por mês · '+S.benefits.items.filter(i=>i.mei).length+' de '+S.benefits.items.length+' contando no MEI</div></button>':note("",I.sparkle,"<b>Recebe benefícios num cartão</b> (Swile, VR…)? Cadastre uma vez e o app lança sozinho todo mês.","bnOpen"))+
    '<section class="card"><div class="sec-h"><h2>DAS '+y+'</h2><span class="small muted num">'+money(dasV)+' por mês</span></div>'+das+'<p class="help" style="margin-top:12px">Vence no dia 20 do mês seguinte. Os pagamentos que aparecem no extrato são marcados sozinhos. Toque num mês para marcar à mão.</p></section>'+
-   (S.tx.some(t=>t.amount>0&&ownerOf(t)==="me"&&MACHINE_RE.test(norm(t.desc)))||S.mei.machineOwn?'<section class="card"><div class="sec-h"><h2>Vendas na maquininha</h2></div><label class="toggle"><input type="checkbox" id="mcMei"'+(S.mei.machine!==false?" checked":"")+'> Contam no faturamento do MEI</label><label class="toggle" style="margin-top:10px"><input type="checkbox" id="mcOwn"'+(S.mei.machineOwn?" checked":"")+'> São do meu próprio cartão de benefícios</label><p class="help" style="margin-top:8px">Com a segunda opção, o dinheiro da maquininha não conta de novo como entrada da família, porque ele já entrou quando caiu no cartão.</p></section>':"")+
+   (S.tx.some(t=>t.amount>0&&ownerOf(t)==="me"&&MACHINE_RE.test(norm(t.desc)))||S.machine.has?'<section class="card"><div class="sec-h"><h2>Vendas na maquininha</h2></div><label class="toggle"><input type="checkbox" id="mcMei"'+(S.mei.machine!==false?" checked":"")+'> Contam no faturamento do MEI</label><div class="field" style="margin-top:12px"><span>Quem paga nas vendas da sua maquininha?</span><div class="chipset">'+[["no","Só clientes"],["benefit","Meu cartão benefício"],["bank","Meu cartão de crédito do banco"],["both","Os dois cartões"]].map(([k,l])=>'<button data-act="machOwn" data-v="'+k+'" class="'+((S.machine.own||"no")===k?"on":"")+'">'+l+'</button>').join("")+'</div></div><p class="help" style="margin-top:8px">Passar o <b>cartão benefício</b> na sua maquininha vira dinheiro novo na sua conta: conta como ganho. Passar o seu <b>cartão de crédito do banco</b> não é ganho, é um empréstimo de você para você: o app tira das entradas e da fatura.</p></section>':"")+
    '<section class="card"><div class="sec-h"><h2>Regras em palavras simples</h2></div>'+
     faq("Qual é o limite do MEI?","Você pode faturar até <b>"+money(teto0)+" por ano</b>, uma média de "+money(teto0/12)+" por mês. Um mês pode passar disso, o que vale é o total do ano. No ano em que o MEI abre, o limite é proporcional aos meses.")+
     faq("E se eu passar até 20%?","Até "+money(teto0*1.2)+" no ano: você continua MEI até dezembro, paga um DAS complementar sobre o que passou e vira Microempresa a partir de janeiro.")+
@@ -895,10 +976,6 @@ function vMei(){
   '</div>';
 }
 
-function vPlan(){
-  const seg='<div class="seg">'+[["orcamento","Limites"],["contas","Contas"],["metas","Metas"]].map(([k,l])=>'<button data-act="plan" data-v="'+k+'" class="'+(ui.plan===k?"on":"")+'">'+l+'</button>').join("")+'</div>';
-  return '<div class="stack">'+demoBanner()+(ui.plan!=="metas"?whoBar():"")+seg+({orcamento:vBudget,contas:vBills,metas:vGoals}[ui.plan]())+'</div>';
-}
 function vBudget(){
   const rows=budgetRows(ui.month);
   const totLim=rows.reduce((a,b)=>a+b.lim,0),totSp=rows.reduce((a,b)=>a+b.sp,0);
@@ -907,19 +984,173 @@ function vBudget(){
    '<section class="card"><div class="sec-h"><h2>Limites do mês</h2><button class="link" data-act="newBudget">Adicionar</button></div>'+
    (rows.length?'<div class="rows">'+rows.map(b=>'<div class="hbar" data-act="editBudget" data-id="'+b.cat+'" style="cursor:pointer"><span>'+esc(CAT[b.cat].n)+'</span><span class="pill '+b.st+'">'+(b.st==="bad"?"Passou "+money(b.sp-b.lim):"Restam "+money(b.lim-b.sp))+'</span><div class="prog '+b.st+'"><i style="width:'+Math.min(b.p*100,100)+'%"></i></div></div>').join("")+'</div>':'<div class="empty">Escolha um limite mensal para o que mais pesa (comida fora, compras…). O app avisa quando chegar perto.</div>')+'</section>';
 }
-function vBills(){
-  const ym=ui.month,who=ui.who,bills=[...S.bills].filter(b=>who==="all"||(b.owner||"me")===who||b.owner==="shared").sort((a,b)=>a.day-b.day);
-  const part=b=>who==="all"?b.amount:billShare(b,who);
-  const tot=bills.reduce((a,b)=>a+part(b),0),paid=bills.filter(b=>b.paid&&b.paid[ym]).reduce((a,b)=>a+part(b),0);
-  const tag=b=>!S.people.length?"":b.owner==="shared"?(who==="all"?" · dividida":" · metade de "+money(b.amount)):(who==="all"?" · "+esc(firstOf(b.owner||"me")):"");
-  return (bills.length?'<section class="hero pet">'+'<button class="hero-pet" data-act="petOpen" aria-label="Vestir o mascote">'+petSVG(null,"")+'</button>'+'<div class="lbl">Falta pagar em '+esc(monthName(ym))+'</div><div class="big num">'+money(tot-paid)+'</div><div class="prog ok" style="background:var(--surface)"><i style="width:'+(tot?paid/tot*100:0)+'%"></i></div></section>':"")+
-   '<section class="card"><div class="sec-h"><h2>Contas fixas</h2><button class="link" data-act="newBill">Adicionar</button></div>'+
-   (bills.length?bills.map(b=>{const s=billStatus(b,ym),p=b.paid&&b.paid[ym];return'<div class="bill'+(p?" paid":"")+'"><button class="check'+(p?" on":"")+'" data-act="payBill" data-id="'+b.id+'" aria-label="'+(p?"Desmarcar":"Marcar como paga")+'">'+I.ok+'</button><div class="mid" data-act="editBill" data-id="'+b.id+'" style="cursor:pointer"><b>'+esc(b.name)+'</b><small class="num">'+money(part(b))+tag(b)+'</small></div><span class="pill '+s.st+'">'+esc(s.txt)+'</span></div>'}).join(""):'<div class="empty">Cadastre aluguel, luz, internet, DAS… O app marca como paga sozinho quando a conta aparece no extrato.</div>')+'</section>';
-}
 function vGoals(){
   return '<section class="card"><div class="sec-h"><h2>Metas</h2><button class="link" data-act="newGoal">Nova meta</button></div>'+
    (S.goals.length?S.goals.map(g=>{const p=g.target?g.saved/g.target:0;let per="";if(g.deadline&&g.saved<g.target){const [y,m]=g.deadline.split("-").map(Number),n=new Date();const months=(y-n.getFullYear())*12+(m-1-n.getMonth());per=months>0?"guarde "+money((g.target-g.saved)/months)+" por mês até "+MONTHS[m-1]:"prazo vencido"}
      return'<div class="item"><div class="item-h"><b>'+esc(g.name)+'</b><span class="pill '+(p>=1?"ok":"")+'">'+Math.round(p*100)+'%</span></div><div class="prog '+(p>=1?"ok":"")+'"><i style="width:'+Math.min(p*100,100)+'%"></i></div><div class="small muted num">'+money(g.saved)+' de '+money(g.target)+(per?" · "+esc(per):"")+'</div><div class="btns"><button class="btn sm" data-act="depGoal" data-id="'+g.id+'">Guardar</button><button class="btn ghost sm" data-act="editGoal" data-id="'+g.id+'">Editar</button></div></div>'}).join(""):'<div class="empty">Reserva de emergência, viagem, um sonho da casa…</div>')+'</section>';
+}
+
+/* ============ calculadora do mês ============ */
+const billActive=(b,ym)=>!(b.until&&ym>b.until)&&!(b.since&&ym<b.since);
+const billPart=b=>ui.who==="all"?b.amount:billShare(b,ui.who);
+const billsInScope=()=>S.bills.filter(b=>ui.who==="all"||(b.owner||"me")===ui.who||b.owner==="shared");
+function monthsWithData(){const m=new Set();S.tx.forEach(t=>{if(!t.demo&&!t.proj&&ownerOf(t)==="me"&&!isBen(t))m.add(t.date.slice(0,7))});return m}
+function forecast(ym){
+  const r=monthSum(ym),cur=thisYM(),isCur=ym===cur,fut=ym>cur;
+  let expInc=r.inc,salPend=0;
+  if((isCur||fut)&&S.salary.amount&&(ui.who==="all"||ui.who==="me")){const got=r.g.salario;if(got<S.salary.amount*.9){salPend=S.salary.amount-got;expInc+=salPend}}
+  const pend=(isCur||fut)?billsInScope().filter(b=>billActive(b,ym)&&!(b.paid&&b.paid[ym])).reduce((a,b)=>a+billPart(b),0):0;
+  const committed=r.out+r.inv+pend;
+  const free=expInc-committed;
+  const save=Math.max(0,expInc*(S.saveGoal||0)/100-r.inv);
+  const can=free-save;
+  const days=isCur?daysIn(ym)-(+today().slice(8))+1:daysIn(ym);
+  return{r,expInc,salPend,pend,committed,free,save,can,days,isCur,fut};
+}
+function longTerm(){
+  const cur=thisYM();const ms=[1,2,3].map(i=>addMonths(cur,-i)).filter(m=>monthsWithData().has(m));
+  if(ms.length<2)return null;
+  const avg=ms.reduce((a,m)=>a+monthSum(m).bal,0)/ms.length;
+  const y=String(thisY());let juros=0;S.tx.forEach(t=>{if(t.amount<0&&t.date.startsWith(y)&&ownerOf(t)==="me"&&/juros|iof|encargo|multa por atraso|cheque especial|rotativo/.test(" "+norm(t.desc)+" "))juros-=t.amount});
+  return{avg,n:ms.length,juros};
+}
+function verdictCard(ym){
+  const f=forecast(ym),lt=f.isCur?longTerm():null;let c,t,p;
+  if(!f.isCur&&!f.fut){const b=f.r.bal;c=b>=0?"ok":"bad";t=b>=0?"Este mês fechou no azul":"Este mês fechou no vermelho";p=b>=0?"Sobraram <b>"+money(b)+"</b>"+(f.r.inv?" e você ainda guardou "+money(f.r.inv)+".":"."):"Faltaram <b>"+money(-b)+"</b>. Veja onde mais gastou no extrato."}
+  else if(f.free<0){c="bad";t="Hora de segurar os gastos";p="O que já saiu e o que ainda vai sair passa em <b>"+money(-f.free)+"</b> o que entra"+(f.fut?" nesse mês":" este mês")+". Evite compras novas e parcelas."}
+  else if(f.can<0){c="warn";t="Dá para fechar o mês, mas sobra pouco";p="Ainda sobram <b>"+money(f.free)+"</b>. Gaste só o necessário para conseguir guardar "+money(f.free>0?f.free:0)+"."}
+  else{c="ok";t=f.fut?"Previsão para "+monthName(ym):"Você ainda pode gastar";p="<b>"+money(f.can)+"</b> até o fim do mês"+(f.isCur&&f.days?", cerca de <b>"+money(f.can/f.days)+" por dia</b>":"")+(f.save>0?", e ainda guardar <b>"+money(f.save)+"</b>.":".")}
+  let extra="";
+  if(f.isCur||f.fut){const bits=[];if(f.pend)bits.push("contas fixas a pagar "+money(f.pend));if(f.r.proj)bits.push("parcelas previstas "+money(f.r.proj));if(f.salPend)bits.push("salário a receber "+money(f.salPend));if(bits.length)extra='<p class="tiny muted" style="margin-top:6px">Já contei: '+bits.join(" · ")+'.</p>'}
+  let lt2="";
+  if(lt){lt2='<div class="lt">'+(lt.juros>50?'<p><b>Antes de investir:</b> você pagou '+money(lt.juros)+' de juros e taxas de dívida este ano. Quitar cheque especial, rotativo e empréstimos rende mais que qualquer investimento.</p>':"")+(lt.avg>0?'<p><b>A longo prazo:</b> nos últimos '+lt.n+' meses sobraram em média '+money(lt.avg)+' por mês. Dá para investir cerca de <b>'+money(lt.avg*.6)+' por mês</b>, começando pela reserva de emergência.</p>':'<p><b>A longo prazo:</b> nos últimos '+lt.n+' meses faltaram em média '+money(-lt.avg)+' por mês. Corte gastos e saia das dívidas antes de investir.</p>')+'</div>'}
+  return '<section class="verdict '+c+'"><span class="ic">'+(c==="ok"?I.ok:I.alert)+'</span><div><b>'+t+'</b><p>'+p+'</p>'+extra+lt2+'</div></section>';
+}
+const sumLine=(label,v,act,id)=>'<div class="sl'+(v?"":" zero")+'"'+(act?' data-act="'+act+'"'+(id?' data-v="'+id+'"':""):"")+'><span>'+label+'</span><b class="num">'+money(v)+'</b></div>';
+function summaryCards(ym){
+  const r=monthSum(ym);
+  return '<div class="home-grid">'+
+   '<section class="card sum in"><div class="sum-h"><span>Entrou</span><b class="num">'+money(r.inc)+'</b></div>'+
+    sumLine("Salário",r.g.salario)+sumLine("Auxílios da empresa",r.g.aux_empresa)+sumLine("Auxílios do governo",r.g.aux_gov)+sumLine("Resgates de investimento",r.g.resgate)+sumLine("Outros ganhos"+(S.mei.on?" (inclui MEI)":""),r.g.ganhos)+'</section>'+
+   '<section class="card sum out"><div class="sum-h"><span>Saiu</span><b class="num">'+money(r.out)+'</b></div>'+
+    sumLine("Cartão de crédito",r.o.cartao)+sumLine("Contas, Pix e débitos",r.o.contas)+sumLine("Dívidas e financiamentos",r.o.dividas)+
+    '<div class="sl sep"><span>Guardou ou investiu</span><b class="num">'+money(r.inv)+'</b></div>'+
+    '<div class="sl"><span>Saldo dos investimentos no mês</span><b class="num'+(r.invNet<0?" neg":"")+'">'+(r.invNet<0?"− ":"")+money(Math.abs(r.invNet))+'</b></div>'+
+    '<p class="tiny muted">Guardou menos o que resgatou.</p></section>'+
+  '</div>';
+}
+function benMini(ym){
+  const bens=S.accounts.filter(a=>a.kind==="beneficio"&&(a.owner||"me")==="me");if(!bens.length)return"";
+  const b=benSum(ym);
+  return '<button class="card mini" data-act="tab" data-v="beneficio"><div class="mini-h"><b>Cartão benefício</b><span class="pill">fora dos ganhos</span></div><div class="small muted num">Recebeu '+money(b.rec)+' · Gastou '+money(b.gas)+' · Sobra '+money(b.saldo)+'</div></button>';
+}
+function nextMonthsCard(){
+  const cur=thisYM();const rows=[1,2,3].map(i=>{const m=addMonths(cur,i);let parc=0;S.tx.forEach(t=>{if(t.date.slice(0,7)===m&&t.amount<0&&inScope(t)&&counts(t))parc-=t.amount});const bills=billsInScope().filter(b=>billActive(b,m)).reduce((a,b)=>a+billPart(b),0);return{m,parc,bills}}).filter(x=>x.parc||x.bills);
+  if(!rows.length)return"";
+  return '<section class="card"><div class="sec-h"><h2>Já comprometido</h2><button class="link" data-act="tabPlan" data-id="parcelas">Ver parcelas</button></div><div class="rows">'+rows.map(x=>'<div class="sl"><span><span class="mo">'+monthLabel(x.m)+'</span><small class="muted"> · parcelas '+money(x.parc)+' + contas fixas '+money(x.bills)+'</small></span><b class="num">'+money(x.parc+x.bills)+'</b></div>').join("")+'</div></section>';
+}
+function vHome(){
+  const ym=ui.month,f=monthSum(ym),notes=homeNotes();
+  let mei="";
+  if(S.mei.on&&(ui.who==="all"||ui.who==="me")){const m=meiYear(thisY());const pc=Math.round(m.p*100);
+    mei='<button class="card mini" data-act="tab" data-v="mei"><div class="mini-h"><b>MEI em '+thisY()+'</b><span class="pill '+m.st+'">'+(m.p>1?"Passou do limite":m.st==="warn"?"Perto do limite":"Tudo certo")+'</span></div><div class="prog '+m.st+'"><i style="width:'+Math.min(pc,100)+'%"></i></div><div class="small muted num">'+money(m.total)+' de '+kfmt(m.teto)+' · '+pc+'% do limite</div></button>'}
+  return '<div class="stack">'+whoBar()+
+   '<div class="home-top">'+
+    '<section class="hero pet"><button class="hero-pet" data-act="petOpen" aria-label="Vestir o mascote">'+petSVG(null,"")+'</button><div class="lbl">'+(f.bal>=0?"Sobrou":"Faltou")+(S.people.length?(ui.who==="all"?" para a família":" para "+esc(firstOf(ui.who))):"")+" em "+esc(monthName(ym))+'</div><div class="big num">'+money(Math.abs(f.bal))+'</div><div class="hero-row"><span><i class="dot" style="background:var(--ok)"></i>Entrou <b class="num">'+money(f.inc)+'</b></span><span><i class="dot" style="background:var(--terra)"></i>Saiu <b class="num">'+money(f.out)+'</b></span>'+(f.inv?'<span><i class="dot" style="background:var(--rose)"></i>Guardou <b class="num">'+money(f.inv)+'</b></span>':"")+'</div></section>'+
+    verdictCard(ym)+
+   '</div>'+
+   summaryCards(ym)+
+   (notes.length?'<section class="notes">'+notes.join("")+'</section>':"")+
+   '<div class="home-grid">'+benMini(ym)+mei+'</div>'+
+   familyCard(ym)+
+   nextMonthsCard()+
+   (S.demo?'<p class="tiny muted" style="text-align:center">Dados de exemplo. Toque no coração lá em cima para os primeiros passos.</p>':"")+
+  '</div>';
+}
+
+/* ============ benefício ============ */
+function benSum(ym){
+  const bens=new Set(S.accounts.filter(a=>a.kind==="beneficio"&&(a.owner||"me")==="me").map(a=>a.id));
+  let rec=0,gas=0,maq=0,saldo=0;const end=ym+"-31";
+  S.tx.forEach(t=>{if(!bens.has(t.acc)||t.proj)return;if(t.date<=end)saldo+=t.amount;if(t.date.slice(0,7)!==ym)return;if(t.amount>0)rec+=t.amount;else if(t.selfMachine)maq-=t.amount;else gas-=t.amount});
+  return{rec,gas,maq,saldo,bens};
+}
+function vBen(){
+  const bens=S.accounts.filter(a=>a.kind==="beneficio"&&(a.owner||"me")==="me");
+  if(!bens.length)return '<div class="stack"><section class="hero"><div class="lbl">Cartão benefício</div><div class="big" style="font-size:26px">Swile, Caju, VR, Alelo…</div><p class="small" style="margin-bottom:14px">Registre o que entra e o que você paga no cartão benefício. Ele fica separado dos seus ganhos, porque é um dinheiro limitado.</p><div class="btns"><button class="btn" data-act="bnOpen">Cadastrar benefício</button><button class="btn ghost" data-act="benFile">Mandar prints</button></div></section></div>';
+  const ym=ui.month,b=benSum(ym);
+  const cnt={};S.tx.forEach(t=>{if(!b.bens.has(t.acc)||t.amount>=0||t.selfMachine||t.proj)return;const k=(payerKey(t.desc)||norm(cleanDesc(t.desc))).split(" ").slice(0,3).join(" ");if(!k)return;(cnt[k]=cnt[k]||{k,ms:new Set(),v:[]});cnt[k].ms.add(t.date.slice(0,7));cnt[k].v.push(-t.amount)});
+  const fixed=Object.values(cnt).filter(x=>x.ms.size>=2).map(x=>({k:x.k,avg:x.v.reduce((a,c)=>a+c,0)/x.v.length,n:x.ms.size})).sort((a,c)=>c.avg-a.avg).slice(0,6);
+  const exp=S.benefits.on?S.benefits.items.reduce((a,i)=>a+(i.amount||0),0):0;
+  const list=S.tx.filter(t=>b.bens.has(t.acc)&&t.date.slice(0,7)===ym).sort((x,y)=>y.date.localeCompare(x.date));
+  return '<div class="stack"><div class="home-top">'+
+   '<section class="hero"><div class="lbl">Sobra no cartão benefício</div><div class="big num">'+money(b.saldo)+'</div><div class="hero-row"><span>Recebeu <b class="num">'+money(b.rec)+'</b></span><span>Gastou <b class="num">'+money(b.gas)+'</b></span></div></section>'+
+   '<section class="card sum"><div class="sum-h"><span>'+esc(monthName(ym))+'</span><b class="num">'+money(b.rec-b.gas-b.maq)+'</b></div>'+sumLine("Recebeu",b.rec)+sumLine("Pagou com o cartão",b.gas)+sumLine("Passou na sua maquininha",b.maq)+(b.maq?'<p class="tiny muted">O que você passa na sua maquininha vira dinheiro na sua conta e conta como ganho lá.</p>':"")+(exp?'<p class="tiny muted">Todo mês você recebe cerca de '+money(exp)+'.</p>':"")+'</section></div>'+
+   (fixed.length?'<section class="card"><div class="sec-h"><h2>Você costuma pagar neste cartão</h2></div>'+fixed.map(x=>'<div class="sl"><span style="text-transform:capitalize">'+esc(x.k)+'<small class="muted"> · '+x.n+' meses</small></span><b class="num">'+money(x.avg)+'</b></div>').join("")+'</section>':"")+
+   '<div class="btns"><button class="btn" data-act="benFile">'+I.file+' Mandar prints</button><button class="btn ghost" data-act="benQuick">'+I.pen+' Escrever rápido</button><button class="btn ghost" data-act="bnOpen">Benefícios fixos</button></div>'+
+   '<p class="help">Dica: ponha "beneficio" no nome do print (ex.: 01_beneficio_abril) e o app já sabe que é do cartão benefício e de qual mês.</p>'+
+   (list.length?'<div class="tx-list">'+list.map(txRow).join("")+'</div>':'<div class="card empty">Nada neste mês ainda.</div>')+
+  '</div>';
+}
+
+/* ============ planejar ============ */
+function findRecurring(){
+  const cur=thisYM(),from=addMonths(cur,-6)+"-01",g={};
+  S.tx.forEach(t=>{if(t.amount>=0||t.proj||t.demo||ownerOf(t)!=="me"||t.date<from||!counts(t)||t.inst||t.cat==="investimento")return;
+    const k=(payerKey(t.desc)||norm(cleanDesc(t.desc))).replace(/^[^a-z0-9]+/,"").replace(/^(compra no debito|compra|pagamento efetuado|pagamento|debito)\s*/,"").replace(/^[^a-z0-9]+/,"").split(" ").slice(0,3).join(" ");if(!k||k.length<3)return;
+    (g[k]=g[k]||{k,ms:new Set(),v:[],d:[],acc:{}});g[k].ms.add(t.date.slice(0,7));g[k].v.push(-t.amount);g[k].d.push(+t.date.slice(8));g[k].acc[t.acc]=(g[k].acc[t.acc]||0)+1});
+  const med=a=>{const s=[...a].sort((x,y)=>x-y);return s[Math.floor(s.length/2)]};
+  return Object.values(g).filter(x=>x.ms.size>=3).map(x=>{const m=med(x.v);const ok=x.v.filter(v=>Math.abs(v-m)<=m*.25).length/x.v.length;return{name:x.k.charAt(0).toUpperCase()+x.k.slice(1),amount:Math.round(m*100)/100,day:med(x.d),acc:Object.entries(x.acc).sort((a,b)=>b[1]-a[1])[0][0],months:x.ms.size,ok}})
+    .filter(x=>x.ok>=.6&&!S.bills.some(b=>{const bn=norm(b.name);return bn&&(norm(x.name).includes(bn.split(" ")[0])||bn.includes(norm(x.name).split(" ")[0]))})&&!(S.dismissRec||{})[norm(x.name)])
+    .sort((a,b)=>b.amount-a.amount).slice(0,8);
+}
+function vPlan(){
+  const segs=[["contas","Contas fixas"],["parcelas","Parcelas"],["dividas","Dívidas"],["metas","Metas"]];
+  if(!segs.some(x=>x[0]===ui.plan))ui.plan="contas";
+  const seg='<div class="seg scroll">'+segs.map(([k,l])=>'<button data-act="plan" data-v="'+k+'" class="'+(ui.plan===k?"on":"")+'">'+l+'</button>').join("")+'</div>';
+  return '<div class="stack">'+demoBanner()+(ui.plan==="contas"?whoBar():"")+seg+({contas:vBills,parcelas:vParcelas,dividas:vDividas,metas:vMetas}[ui.plan]())+'</div>';
+}
+function vBills(){
+  const ym=ui.month,who=ui.who,bills=billsInScope().filter(b=>billActive(b,ym)).sort((a,b)=>a.day-b.day);
+  const tot=bills.reduce((a,b)=>a+billPart(b),0),paid=bills.filter(b=>b.paid&&b.paid[ym]).reduce((a,b)=>a+billPart(b),0);
+  const tag=b=>(b.acc&&acc(b.acc)?" · "+esc(acc(b.acc).name):"")+(b.until?" · até "+monthLabel(b.until):"")+(!S.people.length?"":b.owner==="shared"?(who==="all"?" · dividida":" · metade"):(who==="all"?" · "+esc(firstOf(b.owner||"me")):""));
+  const md=monthsWithData().size,rec=md>=3?findRecurring():[];
+  return (bills.length?'<section class="hero pet"><button class="hero-pet" data-act="petOpen" aria-label="Vestir o mascote">'+petSVG(null,"")+'</button><div class="lbl">Falta pagar em '+esc(monthName(ym))+'</div><div class="big num">'+money(tot-paid)+'</div><div class="prog ok" style="background:var(--surface)"><i style="width:'+(tot?paid/tot*100:0)+'%"></i></div></section>':"")+
+   (md<3?note("",I.sparkle,"Para eu achar suas contas fixas e em qual cartão ou conta você paga cada uma, traga extratos e faturas de <b>pelo menos 3 meses</b>. Você tem "+md+" "+(md===1?"mês":"meses")+".","add"):"")+
+   (rec.length?'<section class="card"><div class="sec-h"><h2>Achei contas que se repetem</h2></div>'+rec.map(x=>'<div class="found"><div class="mid"><b>'+esc(x.name)+'</b><div class="tiny muted">'+money(x.amount)+' · dia '+x.day+' · '+esc(accName(x.acc))+' · '+x.months+' meses</div></div><button class="btn sm" data-act="recAdd" data-v="'+esc(JSON.stringify(x))+'">Adicionar</button><button class="icon-btn" data-act="recNo" data-v="'+esc(norm(x.name))+'" aria-label="Não é conta fixa">'+I.x+'</button></div>').join("")+'</section>':"")+
+   '<section class="card"><div class="sec-h"><h2>Contas fixas</h2><button class="link" data-act="newBill">Adicionar</button></div>'+
+   (bills.length?bills.map(b=>{const s=billStatus(b,ym),p=b.paid&&b.paid[ym];return'<div class="bill'+(p?" paid":"")+'"><button class="check'+(p?" on":"")+'" data-act="payBill" data-id="'+b.id+'" aria-label="'+(p?"Desmarcar":"Marcar como paga")+'">'+I.ok+'</button><div class="mid" data-act="editBill" data-id="'+b.id+'" style="cursor:pointer"><b>'+esc(b.name)+'</b><small class="num">'+money(billPart(b))+tag(b)+'</small></div><span class="pill '+s.st+'">'+esc(s.txt)+'</span></div>'}).join(""):'<div class="empty">Cadastre aluguel, luz, internet, DAS… O app marca como paga sozinho quando a conta aparece no extrato ou na fatura, e aprende onde você paga cada uma.</div>')+'</section>';
+}
+function vParcelas(){
+  const cur=thisYM(),months=[];let total=0;
+  for(let i=0;i<=24;i++){const m=addMonths(cur,i);const items=S.tx.filter(t=>t.date.slice(0,7)===m&&t.inst&&t.amount<0&&inScope(t)&&(t.proj||i===0));if(items.length){const v=items.reduce((a,t)=>a-t.amount,0);total+=i>0?v:0;months.push({m,items,v})}}
+  if(!months.length)return '<section class="card"><div class="empty">Nenhuma compra parcelada ainda. Ao importar uma fatura com "Parcela 2/5", o app já lança as próximas. Para lançar à mão, use <b>Escrever rápido</b> com "tv 1200 10x".</div></section>';
+  return '<section class="hero"><div class="lbl">Parcelas que ainda vão vencer</div><div class="big num">'+money(total)+'</div><div class="hero-row"><span>a partir de '+monthLabel(addMonths(cur,1))+'</span></div></section>'+
+   months.map(x=>'<section class="card"><div class="sec-h"><h2 style="text-transform:capitalize">'+monthLabel(x.m)+'</h2><b class="num">'+money(x.v)+'</b></div><div class="tx-list flat">'+x.items.map(txRow).join("")+'</div></section>').join("");
+}
+function vDividas(){
+  const cur=thisYM(),from=addMonths(cur,-5)+"-01",y=String(thisY());
+  const reg=S.bills.filter(b=>b.cat==="dividas"&&billActive(b,cur));
+  const g={};let juros=0;
+  S.tx.forEach(t=>{if(t.amount>=0||ownerOf(t)!=="me"||t.proj||isCardPayment(t))return;const d=" "+norm(t.desc)+" ";if(t.date.startsWith(y)&&/juros|iof|encargo|multa por atraso/.test(d))juros-=t.amount;
+    if(t.cat!=="dividas"||t.date<from)return;const k=(payerKey(t.desc)||norm(cleanDesc(t.desc))).split(" ").slice(0,3).join(" ");(g[k]=g[k]||{k,v:0,ms:new Set()});g[k].v-=t.amount;g[k].ms.add(t.date.slice(0,7))});
+  const det=Object.values(g).sort((a,b)=>b.v-a.v).slice(0,10);
+  const monthly=reg.reduce((a,b)=>a+b.amount,0);
+  return '<section class="hero"><div class="lbl">Dívidas e financiamentos por mês</div><div class="big num">'+money(monthly)+'</div><div class="hero-row"><span>Juros e taxas pagos em '+y+': <b class="num">'+money(juros)+'</b></span></div></section>'+
+   '<section class="card"><div class="sec-h"><h2>Cadastradas</h2><button class="link" data-act="newDebt">Adicionar</button></div>'+(reg.length?reg.map(b=>'<div class="bill"><div class="mid" data-act="editBill" data-id="'+b.id+'" style="cursor:pointer"><b>'+esc(b.name)+'</b><small class="num">'+money(b.amount)+' por mês'+(b.until?' · termina em '+monthLabel(b.until):"")+'</small></div></div>').join(""):'<div class="empty">Financiamento, consórcio, empréstimo… Cadastre para o app contar a parcela todo mês e avisar quando termina.</div>')+'</section>'+
+   (det.length?'<section class="card"><div class="sec-h"><h2>Encontrei nos extratos</h2><span class="small muted">últimos 6 meses</span></div>'+det.map(x=>'<div class="sl"><span style="text-transform:capitalize">'+esc(x.k)+'<small class="muted"> · '+x.ms.size+' '+(x.ms.size>1?"meses":"mês")+'</small></span><b class="num">'+money(x.v)+'</b></div>').join("")+'</section>':"")+
+   '<section class="card flat"><div class="sec-h"><h2>Para sair das dívidas</h2></div><ol class="steps"><li>Pague primeiro o que tem os maiores juros: cheque especial e rotativo do cartão.</li><li>Evite parcelar fatura e pegar "Pix no crédito": os juros passam de 10% ao mês.</li><li>Use o que sobrar no mês para quitar antes de começar a investir.</li></ol></section>';
+}
+function vMetas(){return vGoals()+vBudget()}
+function maisSheet(){
+  const meiTab=!(S.mei.declined&&!S.mei.on);
+  openSheet(sh("Mais",'<div class="opts">'+
+   (meiTab?'<button class="opt" data-act="tab" data-v="mei"><span class="oi">'+I.mei+'</span><b>MEI</b><small>Limite, Imposto de Renda e DAS</small></button>':"")+
+   '<button class="opt" data-act="tab" data-v="beneficio"><span class="oi">'+I.card+'</span><b>Benefício</b><small>Swile, Caju, VR…</small></button>'+
+   '<button class="opt" data-act="settings"><span class="oi">'+I.gear+'</span><b>Ajustes</b><small>Bancos, família e backup</small></button>'+
+   '<button class="opt" data-act="lookOpen"><span class="oi">'+I.sparkle+'</span><b>Aparência</b><small>Cores e mascote</small></button>'+
+   '<button class="opt" data-act="welcome"><span class="oi">'+I.heart+'</span><b>Primeiros passos</b><small>Tela de entrada</small></button>'+
+  '</div>'));
 }
 
 /* ============ folhas ============ */
@@ -945,7 +1176,7 @@ function pasteSheet(){openSheet(sh("Colar extrato",'<p class="help">No app ou si
 function quickSheet(){
   const accs=S.accounts.filter(a=>(a.owner||"me")==="me");
   let sel=ui.quickAcc&&acc(ui.quickAcc)?ui.quickAcc:(S.lastQuickAcc&&acc(S.lastQuickAcc)?S.lastQuickAcc:(accs[0]?accs[0].id:""));ui.quickAcc=sel;
-  const cnt={};S.tx.forEach(t=>{if(t.acc===sel&&t.amount<0&&t.cat!=="propria"&&!t.demo){let k=(payerKey(t.desc)||norm(cleanDesc(t.desc))).split(" ").slice(0,3).join(" ");k=k.charAt(0).toUpperCase()+k.slice(1);if(k&&k.length>2)cnt[k]=(cnt[k]||0)+1}});
+  const cnt={};S.tx.forEach(t=>{if(t.acc===sel&&t.amount<0&&t.cat!=="propria"&&t.cat!=="investimento"&&!t.demo){let k=(payerKey(t.desc)||norm(cleanDesc(t.desc))).split(" ").slice(0,3).join(" ");k=k.charAt(0).toUpperCase()+k.slice(1);if(k&&k.length>2)cnt[k]=(cnt[k]||0)+1}});
   const sug=Object.entries(cnt).sort((a,b)=>b[1]-a[1]).slice(0,8).map(x=>x[0]);
   const base=["mercado","ifood","farmácia","padaria","uber"];sug.push(...base.filter(b=>!sug.some(x=>norm(x)===norm(b))).slice(0,Math.max(0,6-sug.length)));
   openSheet(sh("Escrever rápido",
@@ -966,13 +1197,22 @@ function txForm(t){
    '<div class="row2"><label class="field"><span>Data</span><input type="date" id="txDate" value="'+t.date+'"></label><label class="field"><span>Conta</span><select id="txAcc">'+accOpts(t.acc)+'</select></label></div>'+
    '<label class="field"><span>Categoria</span><select id="txCat"><option value="">Automática</option>'+catOpts(t.cat,type)+'</select></label>'+ownerSel("txOwner",isNew&&ui.who!=="all"?ui.who:ownerOf(t),false)+
    '<label class="field" id="meiField"'+(type==="in"&&S.mei.on?"":" hidden")+'><span>Conta como ganho do MEI?</span><select id="txMei"><option value="auto"'+(t.mei==null?" selected":"")+'>Automático ('+(mc==="mei"?"sim":mc==="maybe"?"a confirmar":"não")+')</option><option value="yes"'+(t.mei===true?" selected":"")+'>Sim</option><option value="no"'+(t.mei===false?" selected":"")+'>Não</option></select></label>'+
-   '<div class="btns">'+(isNew?"":'<button class="btn danger" data-act="delTx" data-id="'+t.id+'">Excluir</button>')+'<button class="btn" data-act="saveTx" data-id="'+(t.id||"")+'">Salvar</button></div>'));
+   (isNew?'<label class="field"><span>Parcelado? <span class="tag-opt">opcional</span></span><input type="number" min="1" max="60" id="txInst" placeholder="Número de parcelas (o valor acima é o total)"></label>':"")+
+   (t.proj?'<p class="help">Lançamento previsto (parcela futura). Pode editar ou excluir à vontade.</p>':"")+
+   '<div class="btns">'+(isNew?"":'<button class="btn danger" data-act="delTx" data-id="'+t.id+'">Excluir</button>')+'<button class="btn" data-act="saveTx" data-id="'+(t.id||"")+'">Salvar</button></div>'+
+   (!isNew&&t.imp?'<button class="link small" data-act="delImp" data-id="'+t.imp+'" style="align-self:center">Excluir toda esta importação ('+S.tx.filter(x=>x.imp===t.imp).length+' lançamentos)</button>':"")+
+   (!isNew&&t.inst?'<button class="link small" data-act="delInst" data-id="'+esc(t.inst.key)+'" style="align-self:center">Excluir esta compra parcelada inteira</button>':"")));
 }
 function budgetForm(cat){const lim=cat&&S.budgets[cat]||"";
   openSheet(sh(cat&&S.budgets[cat]?"Editar limite":"Novo limite",'<label class="field"><span>Categoria</span><select id="bCat">'+catOpts(cat||"alimentacao","out")+'</select></label><label class="field"><span>Limite por mês</span><input type="text" inputmode="decimal" id="bLim" value="'+(lim?String(lim).replace(".",","):"")+'" placeholder="0,00" autofocus></label><div class="btns">'+(cat&&S.budgets[cat]?'<button class="btn danger" data-act="delBudget" data-id="'+cat+'">Remover</button>':"")+'<button class="btn" data-act="saveBudget">Salvar</button></div>'))}
 const ownerSel=(id,sel,shared)=>!S.people.length?"":'<label class="field"><span>De quem é</span><select id="'+id+'">'+members().map(m=>'<option value="'+m+'"'+(sel===m?" selected":"")+'>'+esc(firstOf(m))+'</option>').join("")+(shared?'<option value="shared"'+(sel==="shared"?" selected":"")+'>Dividida (metade cada)</option>':"")+'</select></label>';
-function billForm(b){const isNew=!b;b=b||{name:"",amount:"",day:10,cat:"contas",owner:ui.who!=="all"?ui.who:"me"};
-  openSheet(sh(isNew?"Nova conta fixa":"Editar conta",'<label class="field"><span>Nome</span><input type="text" id="blName" value="'+esc(b.name)+'" placeholder="Energia, aluguel…" '+(isNew?"autofocus":"")+'></label><div class="row2"><label class="field"><span>Valor</span><input type="text" inputmode="decimal" id="blAmt" value="'+(b.amount?String(b.amount).replace(".",","):"")+'"></label><label class="field"><span>Vence dia</span><input type="number" min="1" max="31" id="blDay" value="'+b.day+'"></label></div><label class="field"><span>Categoria</span><select id="blCat">'+catOpts(b.cat,"out")+'</select></label>'+ownerSel("blOwner",b.owner||"me",true)+'<div class="btns">'+(isNew?"":'<button class="btn danger" data-act="delBill" data-id="'+b.id+'">Excluir</button>')+'<button class="btn" data-act="saveBill" data-id="'+(b.id||"")+'">Salvar</button></div>'))}
+function billForm(b,debt){const isNew=!b;b=b||{name:"",amount:"",day:10,cat:debt?"dividas":"contas",owner:ui.who!=="all"?ui.who:"me"};const isDebt=b.cat==="dividas";
+  openSheet(sh(isNew?(isDebt?"Nova dívida ou financiamento":"Nova conta fixa"):"Editar",'<label class="field"><span>Nome</span><input type="text" id="blName" value="'+esc(b.name)+'" placeholder="'+(isDebt?"Financiamento do apê, consórcio…":"Energia, aluguel…")+'" '+(isNew?"autofocus":"")+'></label><div class="row2"><label class="field"><span>Valor por mês</span><input type="text" inputmode="decimal" id="blAmt" value="'+(b.amount?String(b.amount).replace(".",","):"")+'"></label><label class="field"><span>Vence dia</span><input type="number" min="1" max="31" id="blDay" value="'+b.day+'"></label></div>'+
+   '<label class="field"><span>Pago com</span><select id="blAcc"><option value="">Não sei / tanto faz</option>'+S.accounts.map(a=>'<option value="'+a.id+'"'+(b.acc===a.id?" selected":"")+'>'+esc(a.name)+'</option>').join("")+'</select></label>'+
+   '<label class="field"><span>Categoria</span><select id="blCat">'+catOpts(b.cat,"out")+'</select></label>'+
+   '<label class="field"><span>'+(isDebt?"Faltam quantas parcelas?":"Termina quando? (opcional)")+'</span>'+(isDebt?'<input type="number" min="0" max="480" id="blLeft" placeholder="Ex.: 24" value="'+(b.until?Math.max(0,(+b.until.slice(0,4)-thisY())*12+(+b.until.slice(5,7))-(+today().slice(5,7))+1):"")+'">':'<input type="month" id="blUntil" value="'+esc(b.until||"")+'">')+'</label>'+
+   ownerSel("blOwner",b.owner||"me",true)+
+   '<div class="btns">'+(isNew?"":'<button class="btn danger" data-act="delBill" data-id="'+b.id+'">Excluir</button>')+'<button class="btn" data-act="saveBill" data-id="'+(b.id||"")+'">Salvar</button></div>'))}
 function goalForm(g){const isNew=!g;g=g||{name:"",target:"",saved:0,deadline:""};
   openSheet(sh(isNew?"Nova meta":"Editar meta",'<label class="field"><span>Nome</span><input type="text" id="gName" value="'+esc(g.name)+'" '+(isNew?"autofocus":"")+'></label><div class="row2"><label class="field"><span>Quanto juntar</span><input type="text" inputmode="decimal" id="gTarget" value="'+(g.target?String(g.target).replace(".",","):"")+'"></label><label class="field"><span>Já tenho</span><input type="text" inputmode="decimal" id="gSaved" value="'+(g.saved?String(g.saved).replace(".",","):"")+'"></label></div><label class="field"><span>Até quando (opcional)</span><input type="date" id="gDead" value="'+esc(g.deadline||"")+'"></label><div class="btns">'+(isNew?"":'<button class="btn danger" data-act="delGoal" data-id="'+g.id+'">Excluir</button>')+'<button class="btn" data-act="saveGoal" data-id="'+(g.id||"")+'">Salvar</button></div>'))}
 function meiSetup(){
@@ -1029,10 +1269,10 @@ function banksSheet(){
     (reg?regFoundHtml(reg):"")+
    '</section>'));
 }
-function newAccount(name,type,bankId){
+function newAccount(name,type,bankId,kind){
   const f=bankId?BANKS.find(b=>b.id===bankId):findBanks(name)[0];
   if(S.demo)resetDemo();
-  const a={id:uid(),name:name||(f?f.n:"Conta"),type:type||"pf",bank:f?f.id:"",owner:"me"};if(f&&f.id==="swile")a.kind="beneficio";
+  const a={id:uid(),name:name||(f?f.n:"Conta"),type:type||"pf",bank:f?f.id:"",owner:"me",kind:kind||(f&&f.ben?"beneficio":"conta")};
   S.accounts.push(a);return a;
 }
 function resetDemo(){if(!S.demo)return;const name=S.profile.name,onb=S.onb,look=S.look,pet=S.pet,dev=S.deviceId;S=blank();S.profile.name=name;S.onb=onb||S.onb;S.look=look||S.look;S.pet=pet||S.pet;S.deviceId=dev||S.deviceId}
@@ -1041,7 +1281,7 @@ function resetDemo(){if(!S.demo)return;const name=S.profile.name,onb=S.onb,look=
 function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement("script");s.src=src;s.onload=res;s.onerror=()=>rej(new Error("load"));document.head.appendChild(s)})}
 async function pdfText(buf){
   if(!window.pdfjsLib){await loadScript("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js");window.pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"}
-  const doc=await window.pdfjsLib.getDocument({data:buf}).promise;const out=[];
+  const doc=await window.pdfjsLib.getDocument(ui.pdfPw?{data:buf,password:ui.pdfPw}:{data:buf}).promise;const out=[];
   for(let p=1;p<=doc.numPages;p++){const pg=await doc.getPage(p);const tc=await pg.getTextContent();const rows={};
     tc.items.forEach(it=>{if(!it.str||!it.str.trim())return;const y=Math.round(it.transform[5]/3);(rows[y]=rows[y]||[]).push(it)});
     Object.keys(rows).map(Number).sort((a,b)=>b-a).forEach(y=>{out.push(rows[y].sort((a,b)=>a.transform[4]-b.transform[4]).map(i=>i.str).join(" "))})}
@@ -1103,7 +1343,7 @@ function cleanDesc(d){
   return (d.match(/[A-Za-zÀ-ú]/g)||[]).length>=3?d:"";
 }
 function parseLoose(text,opts){
-  opts=opts||{};const yh=yearHint(text);const rows=[];let cur=null,lastText="",prevN="",last=null,linesSince=9;
+  opts=opts||{};const yh=yearHint(text);const rows=[];let cur=opts.defaultDate||null,lastText="",prevN="",last=null,linesSince=9;
   for(const raw of text.split(/\r?\n/)){
     const line=raw.replace(/\s+/g," ").trim();if(!line)continue;
     const n=norm(line);let dt=findDate(line,yh);
@@ -1144,6 +1384,7 @@ function parseQuick(text){
     else if(/\bhoje\b/.test(ln))line=line.replace(/hoje/i,"");
     const dm=line.match(/(?:^|\s)(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?(?=\s|$)/);
     if(dm){const y=dm[3]?(dm[3].length===2?"20"+dm[3]:dm[3]):String(thisY());date=y+"-"+pad(dm[2])+"-"+pad(dm[1]);if(!dm[3]&&date>today())date=(+y-1)+date.slice(4);line=line.replace(dm[0]," ")}
+    let inst=0;const im=line.match(/(?:em\s+)?(\d{1,2})\s?x\b/i);if(im&&+im[1]>1){inst=+im[1];line=line.replace(im[0]," ")}
     const toks=line.trim().split(/\s+/);let idx=-1,val=NaN;
     for(let i=toks.length-1;i>=0;i--){const tk=toks[i].replace(/^r\$/i,"");
       if(/^[+\-−]?\d+\.\d{1,2}$/.test(tk)){val=parseFloat(tk.replace("−","-"));idx=i;break}
@@ -1152,6 +1393,7 @@ function parseQuick(text){
     const plus=/^\+/.test(toks[idx])||/\b(recebi|entrou|ganhei|recebido|salario|cliente|pix de|venda)\b/.test(norm(line));
     toks.splice(idx,1);let desc=toks.join(" ").replace(/r\$/ig,"").replace(/\s+/g," ").trim()||"Lançamento";
     desc=desc.charAt(0).toUpperCase()+desc.slice(1);
+    if(inst&&!plus){const per=Math.round(Math.abs(val)/inst*100)/100;const ym=date.slice(0,7),dd=+date.slice(8);for(let k=1;k<=inst;k++){const m=addMonths(ym,k-1);rows.push({date:m+"-"+pad(Math.min(dd,daysIn(m))),amount:-per,desc:desc+" - Parcela "+k+"/"+inst,proj:k>1})}continue}
     rows.push({date,amount:plus?Math.abs(val):-Math.abs(val),desc});
   }
   return{rows,card:false};
@@ -1180,7 +1422,7 @@ async function imageFileCanvas(file){
 }
 async function pdfCanvases(buf){
   if(!window.pdfjsLib){await loadScript("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js");window.pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"}
-  const doc=await window.pdfjsLib.getDocument({data:buf}).promise;const out=[];
+  const doc=await window.pdfjsLib.getDocument(ui.pdfPw?{data:buf,password:ui.pdfPw}:{data:buf}).promise;const out=[];
   for(let p=1;p<=Math.min(doc.numPages,12);p++){const pg=await doc.getPage(p);const vp=pg.getViewport({scale:2.2});const c=document.createElement("canvas");c.width=vp.width;c.height=vp.height;const x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);await pg.render({canvasContext:x,viewport:vp}).promise;out.push(prepCanvas(c,c.width,c.height))}
   return out;
 }
@@ -1195,18 +1437,51 @@ async function ocrCanvases(cs,label){
 const ocrLoading=t=>'<div class="loading"><span class="spin"></span><span id="ocrMsg">'+esc(t)+'</span></div><p class="help" style="text-align:center">Na primeira vez o celular baixa o leitor de imagens (alguns segundos). Depois fica mais rápido.</p>';
 function ocrFail(){openSheet(sh("Não consegui ler o print",'<p class="help">A leitura de prints precisa de internet e funciona no site publicado (no GitHub). Aqui na prévia ela não roda. Você pode usar <b>Escrever rápido</b>: uma linha por gasto, como "assai 180".</p><div class="btns"><button class="btn" data-act="quickSheet">Escrever rápido</button></div>'))}
 
+function fileHints(fname){
+  const n=norm(fname).replace(/[_\-.]+/g," ");
+  let kind="";if(/fatura|invoice/.test(n))kind="cartao";if(/benef|swile|caju|alelo|pluxee|sodexo|ticket|\bvr\b|flash|vale (alimentacao|refeicao)/.test(n))kind="beneficio";
+  let month="";const mi=MONTHS.findIndex(m=>new RegExp("\\b"+norm(m)+"\\b").test(n)),ma=MAB.findIndex(m=>new RegExp("\\b"+m+"\\b").test(n));const mm=mi>=0?mi:ma;
+  if(mm>=0){const y=(n.match(/\b(20\d{2})\b/)||[])[1];let yr=y?+y:thisY();if(!y&&mm+1>+today().slice(5,7))yr--;month=yr+"-"+pad(mm+1)}
+  return{kind,month};
+}
+function findPdfStart(b){for(let i=0;i<b.length-4;i++)if(b[i]===0x25&&b[i+1]===0x50&&b[i+2]===0x44&&b[i+3]===0x46&&b[i+4]===0x2d)return i;return -1}
+async function inflate(b,fmt){const ds=new DecompressionStream(fmt);const out=new Response(new Blob([b]).stream().pipeThrough(ds));return new Uint8Array(await out.arrayBuffer())}
+async function unwrapFile(b){
+  try{
+    if(b[0]===0x1f&&b[1]===0x8b&&window.DecompressionStream)return await unwrapFile(await inflate(b,"gzip"));
+    if(b[0]===0x50&&b[1]===0x4b&&b[2]===0x03&&b[3]===0x04&&window.DecompressionStream){
+      const dv=new DataView(b.buffer,b.byteOffset,b.byteLength);const method=dv.getUint16(8,true),csize=dv.getUint32(18,true),nl=dv.getUint16(26,true),xl=dv.getUint16(28,true);const st=30+nl+xl;
+      const data=b.slice(st,csize?st+csize:b.length);
+      if(method===0)return data;if(method===8)return await inflate(data,"deflate-raw");
+    }
+    if(b[0]===0x78&&[0x01,0x5e,0x9c,0xda].includes(b[1])&&window.DecompressionStream)return await inflate(b,"deflate");
+  }catch(e){}
+  return b;
+}
 async function readOneFile(file){
-  const buf=new Uint8Array(await file.arrayBuffer());const name=norm(file.name);const isImg=/^image\//.test(file.type)||/\.(png|jpe?g|heic|webp)$/.test(name);
+  let buf=new Uint8Array(await file.arrayBuffer());const name=norm(file.name);
+  if(!buf.length){const e=new Error("O arquivo chegou vazio (0 bytes). No iPhone isso acontece quando ele ainda está no iCloud: abra o arquivo uma vez no app Arquivos e tente de novo.");e.name="EmptyFile";throw e}
+  const hex=b=>[...b.slice(0,8)].map(x=>x.toString(16).padStart(2,"0")).join(" ");
+  ui.lastFileInfo=file.name+" · "+buf.length+" bytes · início: "+hex(buf);
+  buf=await unwrapFile(buf);
+  {const at=findPdfStart(buf);if(at>0)buf=buf.slice(at)}const isImg=/^image\//.test(file.type)||/\.(png|jpe?g|heic|webp)$/.test(name);
   let res={rows:[]},src="",ocr=false;
   if(isImg){ocr=true;openSheet(sh("Lendo print",ocrLoading("Lendo "+file.name+"…")));src=await ocrCanvases([await imageFileCanvas(file)],"o print");res=parseLoose(src,{ocr:true})}
-  else if(name.endsWith(".pdf")||(buf[0]===0x25&&buf[1]===0x50&&buf[2]===0x44)){
+  else if(buf[0]===0x25&&buf[1]===0x50&&buf[2]===0x44&&buf[3]===0x46){
     src=await pdfText(buf.slice());
     if(src.replace(/\s/g,"").length<30){ocr=true;openSheet(sh("Lendo print",ocrLoading("Lendo "+file.name+"…")));src=await ocrCanvases(await pdfCanvases(buf.slice()),"o print");res=parseLoose(src,{ocr:true})}
     else res=parseLoose(src);
   }
   else if(/\.xlsx?$/.test(name)){src=await xlsxText(buf);res=parseCSV(src);if(!res.rows.length)res=parseLoose(src.replace(/;/g," "))}
-  else{src=decode(buf);res=/<OFX>|OFXHEADER|<STMTTRN>/i.test(src)?parseOFX(src):parseCSV(src);if(!res.rows.length)res=parseLoose(src.replace(/[;\t]/g," "))}
-  if(!ocr&&(/fatura|invoice|cartao|credit/.test(name)||/esta e a sua fatura|data de vencimento|vencimento da fatura|esta fatura vence|resumo da fatura|limite total do cartao|pagamento minimo/.test(norm(src.slice(0,6000)))))res.card=true;
+  else{src=decode(buf);
+    if(/\.pdf$/.test(name)&&/<html|<!doctype/i.test(src.slice(0,2000)))src=src.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi," ").replace(/<(br|\/p|\/tr|\/div|\/li)[^>]*>/gi,"\n").replace(/<[^>]+>/g," ").replace(/&nbsp;/g," ").replace(/&amp;/g,"&");
+    res=/<OFX>|OFXHEADER|<STMTTRN>/i.test(src)?parseOFX(src):parseCSV(src);if(!res.rows.length)res=parseLoose(src.replace(/[;\t]/g," "));
+    if(/\.pdf$/.test(name)&&!res.rows.length){const smp=buf.slice(0,4000);let bin=0;smp.forEach(x=>{if(x<9||(x>13&&x<32))bin++});const e=new Error(bin>smp.length*0.04?"Esse arquivo está embaralhado (criptografado ou num formato que só o app do banco abre), por isso não dá para ler, mesmo terminando em .pdf.":"O nome termina em .pdf, mas o conteúdo não é um PDF.");e.name="NotPdf";throw e}}
+  const fh=fileHints(file.name);res.kind=fh.kind;res.month=fh.month;
+  if(fh.month&&!res.rows.length&&src){res=Object.assign(parseLoose(src,{ocr,defaultDate:fh.month+"-01"}),{kind:fh.kind,month:fh.month})}
+  if(fh.kind==="beneficio")res.card=false;
+  if(fh.kind==="cartao")res.card=true;
+  if(!ocr&&fh.kind!=="beneficio"&&(/fatura|invoice|cartao|credit/.test(name)||/esta e a sua fatura|data de vencimento|vencimento da fatura|esta fatura vence|resumo da fatura|limite total do cartao|pagamento minimo/.test(norm(src.slice(0,6000)))))res.card=true;
   return{res,src,ocr};
 }
 async function handleFiles(files){
@@ -1216,8 +1491,15 @@ async function handleFiles(files){
     if(files.length===1){const r=await readOneFile(files[0]);startReview(r.res,files[0].name,r.src);return}
     const all=[],seen=new Set();let src="",card=false,anyOcr=false;
     for(const f of files){const r=await readOneFile(f);src+="\n"+r.src;card=card||!!r.res.card;anyOcr=anyOcr||r.ocr;r.res.rows.forEach(x=>{const k=dupKey(x);if(anyOcr&&seen.has(k))return;seen.add(k);all.push(x)})}
-    startReview({rows:all,card,allGuess:false},files.map(f=>f.name).join(" "),src);
-  }catch(e){if(e&&(e.message==="load"||/worker|fetch|network|tesseract/i.test(String(e.message||e))))return ocrFail();openSheet(sh("Não consegui ler",'<p>Não consegui abrir esse arquivo. Tente o formato <b>OFX</b> ou use <b>Colar texto</b>.</p><div class="btns"><button class="btn ghost" data-act="pasteSheet">Colar texto</button><button class="btn" data-act="pickFile">Outro arquivo</button></div>'))}
+    const fh=fileHints(files.map(f=>f.name).join(" "));startReview({rows:all,card:fh.kind==="beneficio"?false:card,allGuess:false,kind:fh.kind},files.map(f=>f.name).join(" "),src);
+  }catch(e){
+    if(e&&e.name==="PasswordException"){ui.pdfFiles=files;return pdfPwSheet(e.code===2)}
+    if(e&&(e.message==="load"||/worker|fetch|network|tesseract/i.test(String(e.message||e))))return ocrFail();const why=e&&e.name==="EmptyFile"?e.message:e&&e.name==="NotPdf"?e.message+' Tente pegar a fatura por outro caminho: o PDF que chega por <b>e-mail</b>, o <b>internet banking no computador</b> ou, no app do banco, <b>Compartilhar</b> e depois <b>Salvar em Arquivos</b>. Se nada der certo, mande <b>prints da fatura</b> (pode escolher vários de uma vez).':e&&e.name==="InvalidPDFException"?'O PDF parece incompleto ou danificado (o download pode ter sido interrompido). Baixe de novo pelo app do banco e tente outra vez, ou mande prints da fatura.':'Não consegui abrir esse arquivo. Tente o formato <b>OFX</b> ou use <b>Colar texto</b>.';
+    openSheet(sh("Não consegui ler",'<p>'+why+'</p><p class="help">Detalhe para o suporte: '+esc(String((e&&(e.name+": "+e.message))||e).slice(0,220))+(ui.lastFileInfo?'<br>'+esc(ui.lastFileInfo):"")+'</p><div class="btns"><button class="btn ghost" data-act="pasteSheet">Colar texto</button><button class="btn" data-act="pickFile">Outro arquivo</button></div>'))}
+}
+function pdfPwSheet(wrong){
+  openSheet(sh("PDF com senha",'<p>'+(wrong?'<b>Essa senha não abriu o arquivo.</b> Confira e tente de novo.':'Esse PDF está protegido por senha. Muitos bancos (como o Inter) mandam a fatura assim.')+'</p><p class="help">A senha costuma estar no e-mail ou no app do banco, e geralmente usa números do seu CPF. Ela é usada só agora, para abrir o arquivo, e não fica salva.</p><label class="field"><span>Senha do PDF</span><input id="pdfPw" type="password" autocomplete="off"></label><div class="btns"><button class="btn ghost" data-act="pickFile">Outro arquivo</button><button class="btn" data-act="pdfPwGo">Abrir</button></div>'));
+  setTimeout(()=>{const i=$("#pdfPw");if(i){i.focus();i.addEventListener("keydown",ev=>{if(ev.key==="Enter"){const b=document.querySelector('[data-act="pdfPwGo"]');if(b)b.click()}})}},60);
 }
 async function handleStatement(file){return handleFiles([file])}
 function startReview(res,label,src){
@@ -1228,9 +1510,13 @@ function startReview(res,label,src){
   let guessAcc="";
   if(fb.length&&!S.demo){const a=S.accounts.find(a=>a.bank===fb[0].id);if(a)guessAcc=a.id}
   if(!fb.length&&src){const full=" "+norm(src)+" ";const sc=BANKS.map(b=>({b,n:b.k.reduce((a,k)=>a+(full.split(norm(k)).length-1),0)})).filter(x=>x.n>=2).sort((x,y)=>y.n-x.n);if(sc.length){fb=[sc[0].b];if(!S.demo){const a=S.accounts.find(a=>a.bank===sc[0].b.id);if(a)guessAcc=a.id}}}
-  if(ui.forceAcc&&acc(ui.forceAcc)){guessAcc=ui.forceAcc;ui.forceAcc=null}
+  let kind=res.kind||(res.card?"cartao":"")||(fb[0]&&fb[0].ben?"beneficio":"");
+  if(kind&&!S.demo){const cand=S.accounts.filter(a=>(a.kind||"conta")===kind&&(a.owner||"me")==="me");const m=cand.find(a=>fb[0]&&a.bank===fb[0].id)||(cand.length===1&&!fb.length?cand[0]:null);if(m)guessAcc=m.id;else if(guessAcc&&(acc(guessAcc).kind||"conta")!==kind)guessAcc=""}
+  if(ui.forceAcc&&acc(ui.forceAcc)){guessAcc=ui.forceAcc;kind=acc(guessAcc).kind||kind;ui.forceAcc=null}
+  if(ui.forceKind){kind=ui.forceKind;ui.forceKind=null;if(kind==="beneficio")res.card=false}
   const hh=norm((src||"").slice(0,3000));const isPj=/pessoa juridica|conta pj/.test(hh)||(/\bcnpj\b/.test(hh)&&!/cpf\s*\/\s*cnpj/.test(hh)&&!/nu pagamentos|cnpj 18\.236/.test(hh));
-  ui.imp={rows:res.rows,card:!!res.card,acc:guessAcc||"__new",newName:fb[0]?fb[0].n+(isPj?" PJ":""):"",newBank:fb[0]?fb[0].id:"",newType:isPj?"pj":"pf",label,skip:new Set(),allGuess:!!res.allGuess};
+  const bn=fb[0]?fb[0].n:"";const newName=kind==="cartao"?("Cartão "+(bn||"")).trim():kind==="beneficio"?(bn||(S.benefits.card||"Benefício")):(bn+(isPj?" PJ":""));
+  ui.imp={rows:res.rows,card:kind==="beneficio"?false:!!res.card,acc:guessAcc||"__new",newName,newBank:fb[0]?fb[0].id:"",newType:isPj?"pj":"pf",newKind:kind||"conta",label,skip:new Set(),allGuess:!!res.allGuess};
   impSheet();
 }
 const dupKey=t=>t.date+"|"+Math.round(Math.abs(t.amount)*100)+"|"+ruleKey(t.desc).slice(0,20);
@@ -1239,8 +1525,9 @@ function impRows(){
   const accId=imp.acc;
   const ctx={accounts:S.accounts.concat(accId==="__new"?[{id:"__new",type:imp.newType}]:[]),rules:S.rules,profile:S.profile};
   return imp.rows.map((r,i)=>{const amount=imp.card?(r.guess?r.amount:-r.amount):r.amount;
-    const t={date:r.date,amount,desc:r.desc,fitid:r.fitid||"",acc:accId,i};
+    const t={date:r.date,amount,desc:r.desc,fitid:r.fitid||"",acc:accId,i,proj:r.proj};
     if(imp.card&&amount>0&&/pagamento|pagto/.test(norm(r.desc)))t.cat="propria";
+    {const ii=instInfo(r.desc);if(ii&&imp.card)t.instTxt=" · parcela "+ii.n+" de "+ii.tot}
     t.dup=exist.has(dupKey(t))||(!!t.fitid&&exist.has("f:"+accId+":"+t.fitid));
     t.skip=imp.skip.has(i);
     if(!t.cat)t.cat=categorize(t.desc,amount,accId,ctx);
@@ -1252,19 +1539,54 @@ function impSheet(){
   openSheet(sh("Conferir",
    '<p class="help"><b>'+rows.length+' lançamentos</b> encontrados'+(dupN?", "+dupN+" já estavam no app":"")+'. Desmarque o que não for lançamento.</p>'+
    '<label class="field"><span>De qual conta?</span><select id="impAcc">'+accOpts(imp.acc,true)+'</select></label>'+
-   (imp.acc==="__new"?'<div class="row2"><input type="text" id="impNewName" placeholder="Ex.: Inter PJ" value="'+esc(imp.newName)+'" list="bankList2" aria-label="Nome da conta"><div class="seg"><button data-act="impType" data-v="pf" class="'+(imp.newType!=="pj"?"on":"")+'">CPF</button><button data-act="impType" data-v="pj" class="'+(imp.newType==="pj"?"on":"")+'">PJ</button></div></div><datalist id="bankList2">'+BANKS.map(b=>'<option value="'+esc(b.n)+'">').join("")+'</datalist>':"")+
+   (imp.acc==="__new"?'<div class="row2"><input type="text" id="impNewName" placeholder="Ex.: Inter PJ" value="'+esc(imp.newName)+'" list="bankList2" aria-label="Nome da conta"><div class="seg"><button data-act="impType" data-v="pf" class="'+(imp.newType!=="pj"?"on":"")+'">CPF</button><button data-act="impType" data-v="pj" class="'+(imp.newType==="pj"?"on":"")+'">PJ</button></div></div><div class="seg">'+[["conta","Conta"],["cartao","Cartão de crédito"],["beneficio","Benefício"]].map(([k,l])=>'<button data-act="impKind" data-v="'+k+'" class="'+(imp.newKind===k?"on":"")+'">'+l+'</button>').join("")+'</div><datalist id="bankList2">'+BANKS.map(b=>'<option value="'+esc(b.n)+'">').join("")+'</datalist>':"")+
    '<label class="toggle"><input type="checkbox" id="impCard"'+(imp.card?" checked":"")+'> É fatura de cartão de crédito</label>'+
    (imp.allGuess?'<p class="help">O arquivo não diz o que é entrada ou saída, então deduzi pelo texto. Confira os sinais.</p>':"")+
    '<div class="row2"><div class="card flat" style="padding:12px 14px"><div class="tiny muted">Saiu</div><b class="num">'+money(out)+'</b></div><div class="card flat" style="padding:12px 14px"><div class="tiny muted">Entrou</div><b class="num" style="color:var(--ok)">'+money(inc)+'</b></div></div>'+
-   '<div class="prev">'+rows.slice(0,150).map(t=>'<label class="tx'+(t.dup||t.skip?" off":"")+'">'+(t.dup?'<span style="width:19px;flex:none"></span>':'<input type="checkbox" data-skip="'+t.i+'"'+(t.skip?"":" checked")+' aria-label="Importar este">')+'<div class="mid"><b>'+esc(t.desc)+'</b><small>'+dmy(t.date)+' · '+esc(CAT[t.cat]?CAT[t.cat].n:"")+(t.dup?" · já importado":"")+'</small></div><span class="amt num'+(t.amount>0?" pos":"")+'">'+(t.amount<0?"− ":"+ ")+money(Math.abs(t.amount))+'</span></label>').join("")+(rows.length>150?'<div class="empty">e mais '+(rows.length-150)+'…</div>':"")+'</div>'+
+   '<div class="prev">'+rows.slice(0,150).map(t=>'<label class="tx'+(t.dup||t.skip?" off":"")+'">'+(t.dup?'<span style="width:19px;flex:none"></span>':'<input type="checkbox" data-skip="'+t.i+'"'+(t.skip?"":" checked")+' aria-label="Importar este">')+'<div class="mid"><b>'+esc(t.desc)+'</b><small>'+dmy(t.date)+' · '+esc(CAT[t.cat]?CAT[t.cat].n:"")+(t.instTxt||"")+(t.dup?" · já importado":"")+'</small></div><span class="amt num'+(t.amount>0?" pos":"")+'">'+(t.amount<0?"− ":"+ ")+money(Math.abs(t.amount))+'</span></label>').join("")+(rows.length>150?'<div class="empty">e mais '+(rows.length-150)+'…</div>':"")+'</div>'+
    '<div class="btns"><button class="btn ghost" data-act="close">Cancelar</button><button class="btn" data-act="doImport"'+(fresh.length?"":" disabled")+'>Importar '+fresh.length+'</button></div>'));
+}
+function instInfo(desc){
+  const m=desc.match(/parcela\s*(\d{1,2})\s*(?:\/|de)\s*(\d{1,2})/i)||desc.match(/(?:^|\s)(\d{2})\/(\d{2})(?=\s|$)/);
+  if(!m)return null;const n=+m[1],tot=+m[2];if(!(n>=1&&tot>=2&&n<=tot&&tot<=60))return null;
+  const base=desc.replace(m[0]," ").replace(/[-–\s]+$/,"").replace(/\s+/g," ").trim();return{n,tot,base};
+}
+function projectInstallments(list,force){
+  let made=0;
+  list.forEach(t=>{const ii=instInfo(t.desc);if(!ii||t.amount>=0)return;
+    const key=norm(ii.base).replace(/[^a-z0-9]/g,"").slice(0,24)+"|"+ii.tot+"|"+Math.round(Math.abs(t.amount));
+    t.inst={key,n:ii.n,tot:ii.tot};
+    S.tx=S.tx.filter(x=>!(x.proj&&x.inst&&x.inst.key===key&&x.inst.n===ii.n));
+    const ym=t.date.slice(0,7),dd=+t.date.slice(8);
+    for(let k=ii.n+1;k<=ii.tot;k++){
+      if(S.tx.some(x=>x.inst&&x.inst.key===key&&x.inst.n===k))continue;
+      const m=addMonths(ym,k-ii.n);
+      S.tx.push({id:uid(),date:m+"-"+pad(Math.min(dd,daysIn(m))),desc:ii.base+" - Parcela "+k+"/"+ii.tot,amount:t.amount,acc:t.acc,cat:t.cat,proj:true,inst:{key,n:k,tot:ii.tot},imp:t.imp});made++;
+    }});
+  return made;
+}
+function addInstallments(base,total,n,date,accId,cat,owner){
+  const per=Math.round(total/n*100)/100;const ym=date.slice(0,7),dd=+date.slice(8);const key="m"+uid();const out=[];
+  for(let k=1;k<=n;k++){const m=addMonths(ym,k-1);const t={id:uid(),date:m+"-"+pad(Math.min(dd,daysIn(m))),desc:base+" - Parcela "+k+"/"+n,amount:-per,acc:accId,cat,inst:{key,n:k,tot:n}};if(k>1)t.proj=true;if(owner)t.owner=owner;S.tx.push(t);out.push(t)}
+  return out;
+}
+function reconcileMachine(){
+  const own=(S.machine||{}).own||"no";const me=S.profile.name;if(!me)return;
+  if(own==="bank"||own==="both"){
+    const sales=S.tx.filter(t=>t.amount>0&&ownerOf(t)==="me"&&MACHINE_RE.test(norm(t.desc))&&!t.selfMachine);
+    S.tx.forEach(t=>{const a=acc(t.acc);if(!a||a.kind!=="cartao"||t.amount>=0||ownerOf(t)!=="me"||!nameIn(t.desc,me)||t.selfMachine)return;
+      t.cat="propria";t.selfMachine=true;
+      const v=Math.abs(t.amount);const m=sales.find(x=>!x.selfMachine&&x.amount<=v*1.001&&x.amount>=v*.8&&Math.abs(daysBetween(x.date,t.date))<=7);
+      if(m){m.cat="propria";m.selfMachine=true}});
+  }
+  if(own==="benefit"||own==="both"){S.tx.forEach(t=>{const a=acc(t.acc);if(a&&a.kind==="beneficio"&&t.amount<0&&nameIn(t.desc,me))t.selfMachine=true})}
 }
 function autoMatchBills(newTx){
   let n=0;
   S.bills.forEach(b=>{newTx.forEach(t=>{const ym=t.date.slice(0,7);if(t.amount>=0||(b.paid&&b.paid[ym]))return;
     const close=Math.abs(Math.abs(t.amount)-b.amount)<=Math.max(2,b.amount*.15);
     const word=ruleKey(b.name).split(" ").filter(w=>w.length>2).some(w=>norm(t.desc).includes(w));
-    if(close&&(word||(t.cat===b.cat&&Math.abs(+t.date.slice(8)-b.day)<=6))){b.paid=b.paid||{};b.paid[ym]=true;n++}})});
+    if(close&&(word||(t.cat===b.cat&&Math.abs(+t.date.slice(8)-b.day)<=6))){b.paid=b.paid||{};b.paid[ym]=true;if(!b.acc)b.acc=t.acc;n++}})});
   return n;
 }
 
@@ -1308,7 +1630,9 @@ function mergeBackup(txt,forcedName,forceMe){
 /* ============ boas-vindas e primeiros passos ============ */
 
 const COMMON_BANKS=["nubank","inter","itau","bradesco","santander","bb","caixa","c6","picpay","mercadopago","pagbank","neon"];
-const WSTEPS=["intro","voce","mei","bancos","extrato","contas","uso"];
+const WSTEPS=["intro","voce","renda","mei","bancos","maquininha","beneficio","dividas","extrato","contas","uso"];
+const BEN_PROV=["swile","caju","vr","alelo","flash","ticket","pluxee","ifoodben"];
+const DEBT_PRESETS=[["Financiamento de imóvel"],["Financiamento de carro"],["Consórcio"],["Empréstimo"],["Parcelamento de fatura"]];
 const BILL_PRESETS=[["Aluguel","moradia",10],["Condomínio","moradia",10],["Energia","contas",15],["Água","contas",20],["Internet","contas",12],["Celular","contas",12],["DAS do MEI","impostos",20],["Cartão de crédito","outros",10]];
 function openWelcome(){ui.screen="welcome";renderScreen()}
 function openWizard(step){ui.screen="wiz";ui.wz=step!=null?step:(S.onb&&S.onb.step)||0;wzInit();renderScreen()}
@@ -1320,6 +1644,7 @@ function wzInit(){
   ui.wzPj=new Set((S.demo?[]:S.accounts).filter(a=>a.type==="pj").map(a=>ui.wzKey[a.id]));
   ui.wzExtra=ui.wzExtra||[];
   ui.wzMei=S.mei.on?"sim":(S.mei.open?"sim":"");
+  ui.wzSalType=S.salary.mei?"pj":(S.salary.amount?"clt":"");ui.wzMach=S.machine.has===true?"sim":S.machine.has===false?"nao":"";ui.wzMachOwn=S.machine.own||"no";ui.wzBen=S.benefits.on?"sim":"";ui.wzBenProv=(BANKS.find(b=>b.n===S.benefits.card)||{}).id||"";
 }
 function renderScreen(){
   const el=$("#screen");
@@ -1354,9 +1679,11 @@ const WSTEP={
     '<section class="card"><div class="sec-h"><h2>Você vai precisar</h2><span class="tag-req">obrigatório</span></div><ul class="need">'+
      '<li>'+ck(1,1)+'<div><b>Seu nome completo</b><small>Como aparece no banco. Serve para reconhecer Pix entre suas contas.</small></div></li>'+
      '<li>'+ck(2,1)+'<div><b>Os bancos onde você tem conta</b><small>Pessoal (CPF) e da empresa (CNPJ).</small></div></li>'+
-     '<li>'+ck(3,1)+'<div><b>O extrato de pelo menos um banco</b><small>Baixe no app do banco em PDF, OFX, CSV ou Excel. Um basta para começar.</small></div></li>'+
+     '<li>'+ck(3,1)+'<div><b>Extratos e faturas de 3 meses</b><small>PDF, OFX, CSV, Excel ou print. Pode começar com um banco só.</small></div></li>'+
     '</ul></section>'+
     '<section class="card"><div class="sec-h"><h2>Se tiver, ajuda</h2><span class="tag-opt">opcional</span></div><ul class="need">'+
+     '<li class="opt-i">'+ck(0,0)+'<div><b>Seu salário e quem paga</b><small>Para o app contar com ele no mês.</small></div></li>'+
+     '<li class="opt-i">'+ck(0,0)+'<div><b>Se tem maquininha, cartão benefício ou dívidas</b><small>O app pergunta e explica cada caso.</small></div></li>'+
      '<li class="opt-i">'+ck(0,0)+'<div><b>Mês em que abriu o MEI</b><small>Para calcular o limite certo do ano.</small></div></li>'+
      '<li class="opt-i">'+ck(0,0)+'<div><b>Extrato da conta PJ desde janeiro</b><small>Para somar tudo que o MEI faturou no ano.</small></div></li>'+
      '<li class="opt-i">'+ck(0,0)+'<div><b>Faturas do cartão de crédito</b><small>Em PDF, do app do banco.</small></div></li>'+
@@ -1367,10 +1694,27 @@ const WSTEP={
   voce:()=>({title:"Como você se chama?",sub:"Use o nome completo, igual aparece no extrato do banco.",body:
     '<label class="field"><span>Nome completo</span><input type="text" id="wzName" autocomplete="name" value="'+esc(S.profile.name)+'" placeholder="Ex.: Maria Souza Lima" autofocus></label>'+
     '<p class="help">Quando você manda dinheiro da conta da empresa para a sua conta pessoal, o extrato mostra seu nome. É assim que o app sabe que não é gasto nem ganho novo.</p>'}),
+  renda:()=>({title:"Quanto você recebe?",sub:"Seu salário ou o valor fixo que você recebe todo mês. Assim o app já conta com ele e calcula quanto você pode gastar.",body:
+    '<label class="field"><span>Valor que cai na conta por mês</span><input type="text" inputmode="decimal" id="wzSalAmt" value="'+(S.salary.amount?String(S.salary.amount).replace(".",","):"")+'" placeholder="Ex.: 5.000,00" autofocus></label>'+
+    '<div class="row2"><label class="field"><span>Quem paga (como aparece no extrato)</span><input type="text" id="wzSalPayer" value="'+esc(S.salary.payer)+'" placeholder="Ex.: Zukk"></label><label class="field"><span>Dia que cai</span><input type="number" min="1" max="31" id="wzSalDay" value="'+(S.salary.day||5)+'"></label></div>'+
+    '<div class="field"><span>Como você recebe?</span><div class="seg"><button data-act="wzSalType" data-v="pj" class="'+(ui.wzSalType==="pj"?"on":"")+'">Como PJ (MEI)</button><button data-act="wzSalType" data-v="clt" class="'+(ui.wzSalType==="clt"?"on":"")+'">Carteira (CLT)</button><button data-act="wzSalType" data-v="outro" class="'+(ui.wzSalType==="outro"?"on":"")+'">Outro</button></div></div>'+
+    '<p class="help">Auxílios da empresa em dinheiro, auxílios do governo e resgates de investimento são reconhecidos sozinhos nos extratos e aparecem separados no resumo.</p>'}),
+  maquininha:()=>({title:"Você tem maquininha?",sub:"Maquininha de cartão, inclusive a do celular (Inter Pag, InfinitePay, Mercado Pago…).",body:
+    '<div class="seg"><button data-act="wzMach" data-v="sim" class="'+(ui.wzMach==="sim"?"on":"")+'">Tenho</button><button data-act="wzMach" data-v="nao" class="'+(ui.wzMach==="nao"?"on":"")+'">Não tenho</button></div>'+
+    (ui.wzMach==="sim"?'<div class="field"><span>Você passa algum cartão seu na sua própria maquininha?</span><div class="chipset">'+[["no","Não, só clientes"],["benefit","Sim, meu cartão benefício"],["bank","Sim, meu cartão de crédito do banco"],["both","Os dois"]].map(([k,l])=>'<button data-act="wzMachOwn" data-v="'+k+'" class="'+(ui.wzMachOwn===k?"on":"")+'">'+l+'</button>').join("")+'</div></div>'+
+     '<section class="card flat"><ul class="need"><li class="opt-i"><span class="ck">+</span><div><b>Vendas para clientes</b><small>Contam como ganho'+(S.mei.on?" e como faturamento do MEI":"")+'.</small></div></li><li class="opt-i"><span class="ck">+</span><div><b>Seu cartão benefício na maquininha</b><small>Vira dinheiro novo na sua conta: conta como ganho.</small></div></li><li class="opt-i"><span class="ck">=</span><div><b>Seu cartão de crédito do banco na maquininha</b><small>Não é ganho: é um empréstimo de você para você, que volta na fatura. O app tira das entradas.</small></div></li></ul></section>':"")}),
+  beneficio:()=>({title:"Recebe cartão benefício?",sub:"Vale alimentação ou refeição num cartão da empresa (Swile, Caju, VR…).",body:
+    '<div class="seg"><button data-act="wzBen" data-v="sim" class="'+(ui.wzBen==="sim"?"on":"")+'">Recebo</button><button data-act="wzBen" data-v="nao" class="'+(ui.wzBen==="nao"?"on":"")+'">Não recebo</button></div>'+
+    (ui.wzBen==="sim"?'<div class="field"><span>Qual cartão?</span><div class="chipset">'+BEN_PROV.map(id=>{const b=BANKS.find(x=>x.id===id);return'<button data-act="wzBenProv" data-v="'+id+'" class="'+(ui.wzBenProv===id?"on":"")+'">'+esc(b.n)+'</button>'}).join("")+'</div></div>'+
+     '<div class="row2"><label class="field"><span>Quanto entra por mês</span><input type="text" inputmode="decimal" id="wzBenAmt" value="'+(S.benefits.items[0]?String(S.benefits.items[0].amount).replace(".",","):"")+'" placeholder="Ex.: 1.100,00"></label><label class="field"><span>Dia que cai</span><input type="number" min="1" max="31" id="wzBenDay" value="'+(S.benefits.items[0]?S.benefits.items[0].day:1)+'"></label></div>'+
+     '<p class="help">O cartão benefício fica numa aba própria e <b>não entra nos seus ganhos</b>, porque é um dinheiro limitado. Mande prints do extrato dele com "beneficio" no nome (ex.: 01_beneficio_abril) e o app lê sozinho.</p>':"")}),
+  dividas:()=>({title:"Tem dívidas ou financiamentos?",sub:"Marque o que você paga todo mês. O app conta a parcela no seu mês e avisa quando termina.",body:
+    '<section class="card">'+DEBT_PRESETS.map(([n],j)=>{const ex=S.bills.find(b=>b.cat==="dividas"&&norm(b.name)===norm(n));const left=ex&&ex.until?Math.max(0,(+ex.until.slice(0,4)-thisY())*12+(+ex.until.slice(5,7))-(+today().slice(5,7))+1):"";return'<div class="preset debt'+(ex?"":" off")+'"><input type="checkbox" id="dp'+j+'"'+(ex?" checked":"")+' aria-label="'+esc(n)+'"><label for="dp'+j+'">'+esc(n)+'</label><input type="text" inputmode="decimal" id="dpv'+j+'" placeholder="Parcela" value="'+(ex?String(ex.amount).replace(".",","):"")+'" aria-label="Valor da parcela de '+esc(n)+'"><input type="number" min="0" max="480" id="dpl'+j+'" placeholder="Faltam" value="'+left+'" aria-label="Parcelas restantes de '+esc(n)+'"></div>'}).join("")+'<p class="tiny muted" style="margin-top:8px">Campos: valor da parcela e quantas parcelas faltam.</p></section>'+
+    '<p class="help">Também procuro nos extratos pagamentos de financiamento, consórcio, empréstimo, juros e cheque especial, e mostro tudo em Planejar → Dívidas.</p>'}),
   mei:()=>({title:"Você é MEI?",sub:"Se for, o app acompanha o limite do ano, o DAS e o Imposto de Renda.",body:
     '<div class="seg"><button data-act="wzMei" data-v="sim" class="'+(ui.wzMei==="sim"?"on":"")+'">Sim, sou MEI</button><button data-act="wzMei" data-v="nao" class="'+(ui.wzMei==="nao"?"on":"")+'">Não sou</button></div>'+
     (ui.wzMei==="sim"?'<label class="field"><span>Mês em que abriu o MEI <span class="tag-opt">opcional</span></span><input type="month" id="wzOpen" value="'+esc(S.mei.open)+'"></label><p class="help" style="margin-top:-6px">Está no seu CCMEI (certificado do MEI). Se abriu este ano, o limite é proporcional.</p>'+
-      '<label class="field"><span>Também tem um emprego de carteira assinada (CLT)? <span class="tag-opt">opcional</span></span><input type="text" inputmode="decimal" id="wzSal" placeholder="Valor bruto por mês" value="'+(S.mei.salaryManual?String(Math.round(S.mei.salaryManual/12*100)/100).replace(".",","):"")+'"></label><p class="help" style="margin-top:-6px">Só para emprego CLT, com holerite. O que você recebe como PJ (valor fixo, auxílios, reembolso do plano) é faturamento do MEI e entra sozinho pelos extratos. Deixe em branco se não tiver CLT.</p>':"")+
+      '':"")+
     '<p class="help">O app usa as regras de MEI prestador de serviços (limite de R$ 81 mil por ano em 2026).</p>'}),
   bancos:()=>{
     const pjOk=ui.wzMei==="sim"||S.mei.on;
@@ -1384,8 +1728,8 @@ const WSTEP={
   extrato:()=>{
     const accs=S.accounts;const anyTx=S.tx.some(t=>!t.demo);
     const mm=S.mei.on?meiYear(thisY()):null;
-    return{title:"Traga o primeiro extrato",sub:"Comece com <b>um banco só</b>. Depois você adiciona os outros quando quiser, pelo botão <b>+</b>.",next:anyTx?"Continuar":"Continuar sem extrato",body:
-    '<section class="card flat"><ol class="steps"><li>Abra o app do banco e vá em <b>Extrato</b>.</li><li>Procure <b>Exportar</b>, <b>Compartilhar</b> ou <b>Baixar</b> e escolha PDF ou OFX.</li><li>Escolha o período: '+(S.mei.on?"<b>desde janeiro</b>, para o MEI somar o ano todo.":"os <b>últimos 3 meses</b> já é ótimo.")+'</li><li>Salve no celular e envie abaixo.</li></ol></section>'+
+    const md=monthsWithData().size;return{title:"Traga seus extratos e faturas",sub:"Para o app aprender seus padrões (onde você paga o aluguel, quais contas se repetem), traga <b>pelo menos 3 meses</b>: o atual e os 2 anteriores. Pode começar com um banco só. Você tem <b>"+md+" de 3</b>.",next:anyTx?"Continuar":"Continuar sem extrato",body:
+    '<section class="card flat"><ol class="steps"><li>Abra o app do banco e vá em <b>Extrato</b>.</li><li>Procure <b>Exportar</b>, <b>Compartilhar</b> ou <b>Baixar</b> e escolha PDF ou OFX.</li><li>Escolha o período: '+(S.mei.on?"<b>desde janeiro</b>, para o MEI somar o ano todo.":"os <b>últimos 3 meses</b>.")+' Faturas do cartão também: se o nome do arquivo tiver "fatura", o app já sabe que é cartão e lança as parcelas dos próximos meses.</li><li>Salve no celular e envie abaixo.</li></ol></section>'+
     (accs.length?'<section class="card"><div class="sec-h"><h2>Seus bancos</h2></div>'+accs.map(a=>{const l=lastDate(a.id);return'<div class="found"><span class="cat-ico">'+esc(a.name.slice(0,1))+'</span><div class="mid"><b>'+esc(a.name)+(a.type==="pj"?'<span class="badge">PJ</span>':"")+'</b><div class="tiny muted">'+(l?"extrato até "+dmy(l):"sem extrato ainda")+'</div></div><button class="btn sm'+(l?" ghost":"")+'" data-act="wzFile" data-id="'+a.id+'">'+(l?"Mais um":"Enviar")+'</button></div>'}).join("")+'</section>':'<button class="btn" data-act="wzFile">'+I.file+' Escolher arquivo</button>')+
     '<div class="btns"><button class="btn ghost sm" data-act="pasteSheet">'+I.paste+' Colar texto</button><button class="btn ghost sm" data-act="quickSheet">'+I.pen+' Escrever rápido</button></div>'+
     (mm&&mm.maybeN?note("",I.sparkle,"<b>"+mm.maybeN+" entrada"+(mm.maybeN>1?"s":"")+"</b> na conta pessoal pode"+(mm.maybeN>1?"m":"")+" ser do MEI. Confirme agora ou depois.","review"):"")+
@@ -1399,19 +1743,29 @@ const WSTEP={
     return{skip:false,title:"Pronto! É assim que usa",next:"Ir para o início",body:
     '<section class="card"><div class="done-list">'+row(!!S.profile.name,"Seu nome")+row(S.mei.on,"MEI configurado")+row(accN>0,accN+" banco"+(accN===1?"":"s"))+row(txN>0,txN+" lançamento"+(txN===1?"":"s"))+row(S.bills.length>0,S.bills.length+" conta"+(S.bills.length===1?"":"s")+" fixa"+(S.bills.length===1?"":"s"))+'</div></section>'+
     '<div class="tour">'+
-     '<div class="tour-i"><span class="oi">'+I.home+'</span><div><b>Início</b><p>Quanto sobrou no mês, avisos importantes e onde você mais gastou.</p></div></div>'+
+     '<div class="tour-i"><span class="oi">'+I.home+'</span><div><b>Início</b><p>Quanto entrou, quanto saiu, quanto sobrou e se dá para gastar ou guardar.</p></div></div>'+
      '<div class="tour-i"><span class="oi">'+I.plus+'</span><div><b>Botão +</b><p>Traga mais extratos e faturas, cole texto ou escreva rápido ("uber 23,50"). Faça isso uma vez por semana ou por mês.</p></div></div>'+
      '<div class="tour-i"><span class="oi">'+I.list+'</span><div><b>Extrato</b><p>Toque num lançamento para mudar a categoria. O app aprende e corrige os parecidos.</p></div></div>'+
      (S.mei.on?'<div class="tour-i"><span class="oi">'+I.mei+'</span><div><b>MEI</b><p>Limite do ano, Imposto de Renda e DAS. Quando ele perguntar "Isso é do MEI?", responda uma vez por cliente.</p></div></div>':"")+
-     '<div class="tour-i"><span class="oi">'+I.plan+'</span><div><b>Planejar</b><p>Limites de gasto, contas fixas e metas.</p></div></div>'+
+     '<div class="tour-i"><span class="oi">'+I.plan+'</span><div><b>Planejar</b><p>Contas fixas (e onde você paga cada uma), parcelas dos próximos meses, dívidas e metas.</p></div></div>'+
+     '<div class="tour-i"><span class="oi">'+I.card+'</span><div><b>Benefício</b><p>O que entra e o que você paga no cartão benefício, fora dos seus ganhos.</p></div></div>'+
      '<div class="tour-i"><span class="oi">'+I.gear+'</span><div><b>Ajustes</b><p>Backup para usar no outro celular, bancos e configurações do MEI.</p></div></div>'+
     '</div><p class="help">Dica: instale na tela de início (Safari: Compartilhar → Adicionar à Tela de Início). Assim os dados ficam guardados com segurança no iPhone.</p>'}}
 };
 function wzSave(key){
   if(key==="intro"){if(S.demo){resetDemo();wzInit()}}
   else if(key==="voce"){S.profile.name=val("wzName").trim();recatPeople()}
+  else if(key==="renda"){S.salary.amount=numVal("wzSalAmt");S.salary.payer=val("wzSalPayer").trim();S.salary.day=Math.min(31,Math.max(1,parseInt(val("wzSalDay"))||5));S.salary.mei=ui.wzSalType==="pj";if(ui.wzSalType==="pj"&&!S.mei.declined){S.mei.on=true;ui.wzMei="sim"}recatPeople()}
+  else if(key==="maquininha"){if(ui.wzMach==="nao"){S.machine.has=false;S.machine.own="no"}else if(ui.wzMach==="sim"){S.machine.has=true;S.machine.own=ui.wzMachOwn||"no"}recatMachine()}
+  else if(key==="beneficio"){if(ui.wzBen==="sim"){const B=S.benefits;const pv=BANKS.find(b=>b.id===(ui.wzBenProv||"swile"));B.card=pv?pv.n:"Benefício";const amt=numVal("wzBenAmt"),day=Math.min(31,Math.max(1,parseInt(val("wzBenDay"))||1));
+      if(!B.items.length)B.items.push({id:uid(),name:"Benefício",amount:amt,day,mei:false});else Object.assign(B.items[0],{amount:amt,day});
+      let a=S.accounts.find(x=>x.kind==="beneficio"&&(x.owner||"me")==="me");if(!a)a=newAccount(B.card,"pf",pv?pv.id:"","beneficio");B.accId=a.id;
+      if(amt>0){B.on=true;B.since=B.since||thisYM();syncBenefits()}}}
+  else if(key==="dividas"){DEBT_PRESETS.forEach(([n],j)=>{const cb=document.getElementById("dp"+j);if(!cb)return;const ex=S.bills.find(b=>b.cat==="dividas"&&norm(b.name)===norm(n));
+      if(cb.checked){const amount=numVal("dpv"+j),left=parseInt(val("dpl"+j));const until=left>0?addMonths(thisYM(),left-1):"";if(ex)Object.assign(ex,{amount:amount||ex.amount,until});else S.bills.push({id:uid(),name:n,amount,day:10,cat:"dividas",owner:"me",until,since:thisYM(),paid:{}})}
+      else if(ex)S.bills=S.bills.filter(b=>b!==ex)})}
   else if(key==="mei"){
-    if(ui.wzMei==="sim"){S.mei.on=true;S.mei.declined=false;S.mei.open=val("wzOpen")||S.mei.open;const sv=val("wzSal").trim();S.mei.salaryManual=sv?numVal("wzSal")*12:null}
+    if(ui.wzMei==="sim"){S.mei.on=true;S.mei.declined=false;S.mei.open=val("wzOpen")||S.mei.open}
     else if(ui.wzMei==="nao"){S.mei.on=false;S.mei.declined=true}
   }
   else if(key==="bancos"){
@@ -1426,7 +1780,7 @@ function wzSave(key){
   }
   else if(key==="contas"){
     BILL_PRESETS.forEach(([n,c,d],j)=>{const cb=document.getElementById("bp"+j);if(!cb)return;const ex=S.bills.find(b=>norm(b.name)===norm(n));
-      if(cb.checked){const amount=numVal("bpv"+j),day=Math.min(31,Math.max(1,parseInt(val("bpd"+j))||d));if(ex)Object.assign(ex,{amount:amount||ex.amount,day});else S.bills.push({id:uid(),name:n,amount,day,cat:c,paid:{}})}
+      if(cb.checked){const amount=numVal("bpv"+j),day=Math.min(31,Math.max(1,parseInt(val("bpd"+j))||d));if(ex)Object.assign(ex,{amount:amount||ex.amount,day});else S.bills.push({id:uid(),name:n,amount,day,cat:c,since:thisYM(),paid:{}})}
       else if(ex)S.bills=S.bills.filter(b=>b!==ex)});
     const gn=val("wzGoal").trim(),gv=numVal("wzGoalV");if(gn&&gv)S.goals.push({id:uid(),name:gn,target:gv,saved:0,deadline:""});
   }
@@ -1541,7 +1895,7 @@ function lookSheet(){
 const MACHINE_RE=/credito domicilio cartao|maquininha|recebimento de vendas?|vendas? (no |com |em |de )?(cartao|credito|debito)|vendas? (credito|debito)|inter ?pag|liquidacao de vendas|antecipacao de vendas|receb(imento)? (de )?cartao|pagamento de vendas|venda maquin|credito de vendas/;
 function benAccount(){
   const B=S.benefits;let a=B.accId&&acc(B.accId);
-  if(!a){a={id:uid(),name:B.card||"Swile",type:"pf",bank:"",owner:"me",kind:"beneficio"};S.accounts.push(a);B.accId=a.id}
+  if(!a){a=S.accounts.find(x=>x.kind==="beneficio"&&(x.owner||"me")==="me");if(!a){a={id:uid(),name:B.card||"Swile",type:"pf",bank:(findBanks(B.card||"")[0]||{}).id||"",owner:"me",kind:"beneficio"};S.accounts.push(a)}B.accId=a.id}
   a.name=B.card||"Swile";return a;
 }
 function syncBenefits(){
@@ -1550,12 +1904,13 @@ function syncBenefits(){
   const have=new Set(S.tx.filter(t=>t.benefitKey).map(t=>t.benefitKey));
   for(let ym=B.since;ym<=cur;ym=addMonths(ym,1)){
     B.items.forEach(it=>{const key=it.id+":"+ym;if(have.has(key)||B.skip[key]||!it.amount)return;
+      if(S.tx.some(t=>!t.benefitKey&&t.acc===a.id&&t.amount>0&&t.date.slice(0,7)===ym&&Math.abs(t.amount-it.amount)<=it.amount*.02))return;
       const day=Math.min(it.day||1,daysIn(ym));if(ym===cur&&day>td)return;
       S.tx.push({id:uid(),date:ym+"-"+pad(day),desc:it.name+" ("+a.name+")",amount:it.amount,acc:a.id,cat:it.mei?"mei":"renda",mei:!!it.mei,benefitKey:key});n++});
   }
   return n;
 }
-function recatMachine(){S.tx.forEach(t=>{if(t.amount<=0||ownerOf(t)!=="me"||S.rules[ruleKey(t.desc)])return;if(MACHINE_RE.test(norm(t.desc))){const a=acc(t.acc);t.cat=S.mei.machineOwn?"propria":(a&&a.type==="pj"?"mei":"renda")}})}
+function recatMachine(){S.tx.forEach(t=>{if(ownerOf(t)!=="me"||S.rules[ruleKey(t.desc)])return;if(t.selfMachine){delete t.selfMachine;if(t.cat==="propria"&&t.amount<0)t.cat=categorize(t.desc,t.amount,t.acc)}if(t.amount>0&&MACHINE_RE.test(norm(t.desc)))t.cat=S.machine.own==="bank"?"propria":(S.mei.on?"mei":"renda")});reconcileMachine()}
 function benefitsSheet(){
   const B=S.benefits;const sc=$("#sheet").scrollTop;
   openSheet(sh("Benefícios da empresa",
@@ -1590,6 +1945,11 @@ document.addEventListener("click",e=>{
     case"wzBack":wzGo(ui.wz-1);break;
     case"wzSkip":{S.onb.step=Math.max(S.onb.step||0,ui.wz+1);save();wzGo(ui.wz+1);break}
     case"wzNext":{const key=WSTEPS[ui.wz];if(key==="voce"&&!val("wzName").trim()){toast("Escreva seu nome ou toque em Pular.");return}wzSave(key);wzGo(ui.wz+1);break}
+    case"wzSalType":ui.wzSalType=v;{const a=val("wzSalAmt"),p2=val("wzSalPayer"),d=val("wzSalDay");renderScreen();const e1=$("#wzSalAmt");if(e1){e1.value=a;$("#wzSalPayer").value=p2;$("#wzSalDay").value=d}}break;
+    case"wzMach":ui.wzMach=v;renderScreen();break;
+    case"wzMachOwn":ui.wzMachOwn=v;renderScreen();break;
+    case"wzBen":ui.wzBen=v;renderScreen();break;
+    case"wzBenProv":{const a=val("wzBenAmt"),d=val("wzBenDay");ui.wzBenProv=v;renderScreen();if($("#wzBenAmt")){$("#wzBenAmt").value=a;$("#wzBenDay").value=d}break}
     case"wzMei":{ui.wzMei=v;const o=val("wzOpen");if(o)S.mei.open=o;renderScreen();break}
     case"wzBank":{if(ui.wzBanks.has(id)){ui.wzBanks.delete(id);ui.wzPj.delete(id)}else ui.wzBanks.add(id);renderScreen();break}
     case"wzOther":{const n=val("wzOther").trim();if(!n)return;const fb=findBanks(n)[0],isPj=/\bpj\b|cnpj/i.test(n);if(fb&&!isPj&&!ui.wzBanks.has(fb.id)&&!S.accounts.some(a=>a.bank===fb.id))ui.wzBanks.add(fb.id);else{const a=newAccount(n,isPj?"pj":"pf");const k="x:"+a.id;ui.wzKey[a.id]=k;ui.wzBanks.add(k);if(isPj)ui.wzPj.add(k);save()}renderScreen();break}
@@ -1611,7 +1971,14 @@ document.addEventListener("click",e=>{
     case"bnDel":{bnRead();S.benefits.items=S.benefits.items.filter(i=>i.id!==id);benefitsSheet();break}
     case"bnSave":{bnRead();const B=S.benefits;if(!B.items.some(i=>i.amount>0)){toast("Coloque o valor de pelo menos um benefício.");return}if(S.demo)resetDemo();B.on=true;benAccount();S.tx.forEach(t=>{if(t.benefitKey){const it=B.items.find(i=>t.benefitKey.startsWith(i.id+":"));if(it){t.mei=!!it.mei;t.cat=it.mei?"mei":"renda"}}});const n=syncBenefits();recatMachine();save();closeSheet();render();toast(n?n+" lançamento"+(n>1?"s":"")+" de benefício criado"+(n>1?"s":""):"Benefícios salvos");break}
     case"bnOff":{S.benefits.on=false;S.benefits.machine=false;recatMachine();save();closeSheet();render();toast("Benefícios desligados. Os lançamentos já feitos continuam no extrato.");break}
-    case"tab":ui.tab=v||id;render();try{window.scrollTo(0,0)}catch(x){}break;
+    case"mais":maisSheet();break;
+    case"machOwn":S.machine.own=v;S.machine.has=true;recatMachine();save();render();toast("Maquininha atualizada");break;
+    case"benFile":{const b=S.accounts.find(a=>a.kind==="beneficio"&&(a.owner||"me")==="me");ui.forceAcc=b?b.id:null;if(!b){ui.forceKind="beneficio"}closeSheet();$("#fileStmt").value="";$("#fileStmt").click();break}
+    case"benQuick":{const b=S.accounts.find(a=>a.kind==="beneficio"&&(a.owner||"me")==="me");if(b)ui.quickAcc=b.id;quickSheet();break}
+    case"recAdd":{const x=JSON.parse(v);S.bills.push({id:uid(),name:x.name,amount:x.amount,day:x.day,cat:categorize(x.name,-1,x.acc),acc:x.acc,owner:"me",paid:{}});autoMatchBills(S.tx.filter(t=>t.date.slice(0,7)>=addMonths(thisYM(),-2)));save();render();toast("Conta fixa adicionada");break}
+    case"recNo":{S.dismissRec=S.dismissRec||{};S.dismissRec[v]=true;save();render();break}
+    case"newDebt":billForm(null,true);break;
+    case"tab":closeSheet();ui.tab=v||id;render();try{window.scrollTo(0,0)}catch(x){}break;
     case"tabPlan":ui.tab="planejar";ui.plan=id;render();break;
     case"plan":ui.plan=v;render();break;
     case"mPrev":ui.month=addMonths(ui.month,-1);render();break;
@@ -1623,6 +1990,7 @@ document.addEventListener("click",e=>{
     case"settings":settings();break;
     case"add":addSheet();break;
     case"pickFile":closeSheet();$("#fileStmt").value="";$("#fileStmt").click();break;
+    case"pdfPwGo":{const v=($("#pdfPw")||{}).value||"";if(!v)return toast("Digite a senha");ui.pdfPw=v;const fs=ui.pdfFiles||[];ui.pdfFiles=null;handleFiles(fs).finally(()=>{ui.pdfPw=""});break}
     case"pasteSheet":pasteSheet();break;
     case"quickSheet":quickSheet();break;
     case"doPaste":{const tx=val("pasteTxt");let r;if(/<OFX>|<STMTTRN>/i.test(tx))r=parseOFX(tx);else{r=parseCSV(tx);if(!r.rows.length)r=parseLoose(tx)}if(/esta e a sua fatura|data de vencimento|vencimento da fatura|esta fatura vence|resumo da fatura|pagamento minimo/.test(norm(tx.slice(0,6000))))r.card=true;startReview(r,"",tx);break}
@@ -1630,18 +1998,22 @@ document.addEventListener("click",e=>{
     case"qAcc":ui.quickTxt=val("quickTxt");ui.quickAcc=id;quickSheet();break;
     case"qSug":{const ta=$("#quickTxt");const cur=ta.value;ta.value=(cur&&!/\n$/.test(cur)?cur+"\n":cur)+v+" ";ui.quickTxt=ta.value;ta.focus();try{ta.setSelectionRange(ta.value.length,ta.value.length)}catch(x){}break}
     case"impType":ui.imp.newType=v;impSheet();break;
+    case"impKind":ui.imp.newKind=v;if(v==="cartao")ui.imp.card=true;if(v==="beneficio")ui.imp.card=false;impSheet();break;
     case"doImport":{
       const imp=ui.imp;
       const rows=impRows().filter(r=>!r.dup&&!r.skip);
       let accId=imp.acc;
-      if(accId==="__new"){const nm=(imp.newName||"").trim();if(!nm){toast("Dê um nome para a conta.");return}const fb=findBanks(nm)[0];accId=newAccount(nm,imp.newType,fb?fb.id:imp.newBank).id}
-      else if(S.demo){resetDemo();accId=newAccount(imp.newName||"Minha conta",imp.newType,imp.newBank).id}
-      const added=rows.map(r=>{const t={id:uid(),date:r.date,amount:r.amount,desc:r.desc,acc:accId,cat:r.cat};if(r.fitid)t.fitid=r.fitid;S.tx.push(t);return t});
-      const nb=autoMatchBills(added);
-      if(acc(accId)&&acc(accId).type==="pj")S.mei.on=true;
-      const last=added.map(r=>r.date).sort().pop();save();closeSheet();if(last)ui.month=last.slice(0,7);if(ui.screen){renderScreen();render()}else{ui.tab="extrato";render()}
+      if(accId==="__new"){const nm=(imp.newName||"").trim();if(!nm){toast("Dê um nome para a conta.");return}const fb=findBanks(nm)[0];accId=newAccount(nm,imp.newType,fb?fb.id:imp.newBank,imp.newKind).id}
+      else if(S.demo){resetDemo();accId=newAccount(imp.newName||"Minha conta",imp.newType,imp.newBank,imp.newKind).id}
+      const A=acc(accId);if(imp.card&&A&&(A.kind||"conta")==="conta"&&imp.acc==="__new")A.kind="cartao";
+      const impId="i"+uid();
+      const added=rows.map(r=>{const t={id:uid(),date:r.date,amount:r.amount,desc:r.desc,acc:accId,cat:r.cat,imp:impId};if(r.proj)t.proj=true;if(r.fitid)t.fitid=r.fitid;S.tx.push(t);return t});
+      const ni=imp.card||(A&&A.kind==="cartao")?projectInstallments(added):0;
+      const nb=autoMatchBills(added);reconcileMachine();
+      if(A&&A.type==="pj")S.mei.on=true;
+      const last=added.map(r=>r.date).sort().pop();save();closeSheet();if(last)ui.month=last.slice(0,7);if(ui.screen){renderScreen();render()}else{ui.tab=A&&A.kind==="beneficio"?"beneficio":"extrato";render()}
       const mb=S.mei.on?added.filter(t=>t.amount>0&&meiClass(t)==="maybe").length:0;
-      toast(added.length+" lançamentos importados"+(nb?" · "+nb+" conta"+(nb>1?"s":"")+" marcada"+(nb>1?"s":"")+" como paga":"")+(mb?" · "+mb+" para confirmar no MEI":""));
+      toast(added.length+" lançamentos importados"+(ni?" · "+ni+" parcela"+(ni>1?"s":"")+" futura"+(ni>1?"s":"")+" prevista"+(ni>1?"s":""):"")+(nb?" · "+nb+" conta"+(nb>1?"s":"")+" fixa"+(nb>1?"s":"")+" paga"+(nb>1?"s":""):"")+(mb?" · "+mb+" para confirmar no MEI":""));
       break}
     case"clearDemo":openWizard(0);break;
     case"doConfirm":{const f=pendingConfirm;pendingConfirm=null;closeSheet();if(f)f();break}
@@ -1654,12 +2026,18 @@ document.addEventListener("click",e=>{
       const amount=type==="in"?amt:-amt,cat=val("txCat"),mv=val("txMei");
       let t;
       if(id){t=S.tx.find(x=>x.id===id);const old=t.cat;Object.assign(t,{amount,desc,date,acc:val("txAcc")});
-        if(cat&&cat!==old){t.cat=cat;const k=ruleKey(desc);S.rules[k]=cat;let n=0;S.tx.forEach(x=>{if(x!==t&&ruleKey(x.desc)===k&&x.cat!==cat&&(x.amount<0)===(amount<0)){x.cat=cat;n++}});if(n)toast("Apliquei também em "+n+" parecido"+(n>1?"s":""))}
+        if(t.proj&&date<=today())delete t.proj;
+        if(cat&&cat!==old){t.cat=cat;t.manualCat=true;const k=ruleKey(desc);S.rules[k]=cat;let n=0;S.tx.forEach(x=>{if(x!==t&&ruleKey(x.desc)===k&&x.cat!==cat&&(x.amount<0)===(amount<0)){x.cat=cat;n++}});if(n)toast("Apliquei também em "+n+" parecido"+(n>1?"s":""))}
         else if(!cat)t.cat=categorize(desc,amount,t.acc)}
-      else{if(S.demo)resetDemo();t={id:uid(),date,desc,amount,acc:acc(val("txAcc"))?val("txAcc"):"",cat:cat||categorize(desc,amount,val("txAcc"))};S.tx.push(t);if(cat)S.rules[ruleKey(desc)]=cat;autoMatchBills([t])}
+      else{if(S.demo)resetDemo();const ninst=parseInt(val("txInst"))||1;const aid=acc(val("txAcc"))?val("txAcc"):"";const c2=cat||categorize(desc,amount,aid);
+        if(ninst>1&&amount<0){const list=addInstallments(desc,amt,ninst,date,aid,c2);t=list[0];toast("Parcelado em "+ninst+"x de "+money(amt/ninst))}
+        else{t={id:uid(),date,desc,amount,acc:aid,cat:c2};S.tx.push(t)}
+        if(cat)S.rules[ruleKey(desc)]=cat;autoMatchBills([t])}
       {const so=val("txOwner");if(so){const ao=(acc(t.acc)||{}).owner||"me";if(so!==ao)t.owner=so;else delete t.owner}}
       if(amount>0&&mv){if(mv==="auto")delete t.mei;else{t.mei=mv==="yes";if(t.mei)t.cat="mei";else if(t.cat==="mei")t.cat="renda"}}
       save();closeSheet();if(date.slice(0,7)!==ui.month)ui.month=date.slice(0,7);render();break}
+    case"delImp":askConfirm("Excluir todos os lançamentos desta importação?","Excluir tudo",()=>{S.tx=S.tx.filter(x=>x.imp!==id);save();render();toast("Importação excluída")});break;
+    case"delInst":askConfirm("Excluir todas as parcelas desta compra?","Excluir parcelas",()=>{S.tx=S.tx.filter(x=>!(x.inst&&x.inst.key===id));save();render()});break;
     case"delTx":askConfirm("Excluir este lançamento?","Excluir",()=>{const t=S.tx.find(x=>x.id===id);if(t&&t.benefitKey)S.benefits.skip[t.benefitKey]=true;S.tx=S.tx.filter(x=>x.id!==id);save();render()});break;
     case"review":reviewSheet();break;
     case"isClient":setPayer(id,true);save();render();reviewSheet();break;
@@ -1680,11 +2058,11 @@ document.addEventListener("click",e=>{
     case"newBill":billForm();break;
     case"editBill":billForm(S.bills.find(b=>b.id===id));break;
     case"saveBill":{const name=val("blName").trim(),amount=numVal("blAmt"),day=Math.min(31,Math.max(1,parseInt(val("blDay"))||1)),cat=val("blCat");if(!name){toast("Dê um nome para a conta.");return}
-      const owner=val("blOwner")||"me";if(id)Object.assign(S.bills.find(b=>b.id===id),{name,amount,day,cat,owner});else S.bills.push({id:uid(),name,amount,day,cat,owner,paid:{}});save();closeSheet();render();break}
+      const owner=val("blOwner")||"me",bacc=val("blAcc");let until=val("blUntil")||"";const left=val("blLeft");if(left!=="")until=+left>0?addMonths(thisYM(),+left-1):"";if(id)Object.assign(S.bills.find(b=>b.id===id),{name,amount,day,cat,owner,acc:bacc,until});else S.bills.push({id:uid(),name,amount,day,cat,owner,acc:bacc,until,since:thisYM(),paid:{}});save();closeSheet();render();break}
     case"delBill":askConfirm("Excluir esta conta fixa?","Excluir",()=>{S.bills=S.bills.filter(b=>b.id!==id);save();render()});break;
     case"payBill":{const b=S.bills.find(x=>x.id===id),ym=ui.month;b.paid=b.paid||{};
       if(b.paid[ym]){if(typeof b.paid[ym]==="string")S.tx=S.tx.filter(t=>t.id!==b.paid[ym]);delete b.paid[ym]}
-      else{const tid=uid();S.tx.push({id:tid,date:ym===thisYM()?today():ym+"-"+pad(Math.min(b.day,daysIn(ym))),desc:b.name,amount:-b.amount,acc:S.accounts[0]?S.accounts[0].id:"",cat:b.cat});b.paid[ym]=tid;toast("Paga e lançada no extrato")}
+      else{const tid=uid();S.tx.push({id:tid,date:ym===thisYM()?today():ym+"-"+pad(Math.min(b.day,daysIn(ym))),desc:b.name,amount:-b.amount,acc:b.acc||(S.accounts[0]?S.accounts[0].id:""),cat:b.cat});b.paid[ym]=tid;toast("Paga e lançada no extrato")}
       save();render();break}
     case"newGoal":goalForm();break;
     case"editGoal":goalForm(S.goals.find(g=>g.id===id));break;
@@ -1719,8 +2097,8 @@ document.addEventListener("change",async e=>{
   if(e.target.dataset&&e.target.dataset.skip!=null&&ui.imp){const i=+e.target.dataset.skip;if(e.target.checked)ui.imp.skip.delete(i);else ui.imp.skip.add(i);const sc=$("#sheet").scrollTop,pv=$(".prev")?$(".prev").scrollTop:0;impSheet();$("#sheet").scrollTop=sc;if($(".prev"))$(".prev").scrollTop=pv;return}
   if(/^pc_/.test(id)){S.pet[id.slice(3)]=e.target.value;save();petSheet();render();if(ui.screen)renderScreen();return}
   if(id==="mcMei"){S.mei.machine=e.target.checked;save();render();return}
-  if(id==="mcOwn"){S.mei.machineOwn=e.target.checked;recatMachine();save();render();return}
   if(id==="showWelcome"){S.showWelcome=e.target.checked;save();return}
+  if(/^dp\d+$/.test(id)){e.target.closest(".preset").classList.toggle("off",!e.target.checked);return}
   if(/^bp\d+$/.test(id)){e.target.closest(".preset").classList.toggle("off",!e.target.checked);return}
   if(id==="impAcc"){ui.imp.acc=e.target.value;impSheet()}
   else if(id==="impCard"){ui.imp.card=e.target.checked;impSheet()}
@@ -1739,7 +2117,7 @@ try{if(syncBenefits())save()}catch(e){}
 try{if(!localStorage.getItem(KEY))save()}catch(e){storageOk=false}
 applyLook();render();
 if(S.showWelcome!==false)openWelcome();
-window.__caixa={parseCSV,parseOFX,parseLoose,parseQuick,parseNum,findDate,categorize,meiClass,meiYear,irCalc,payerKey,isOwnText,findBanks,get S(){return S}};
+window.__caixa={monthSum,forecast,findRecurring,parseCSV,parseOFX,parseLoose,parseQuick,parseNum,findDate,categorize,meiClass,meiYear,irCalc,payerKey,isOwnText,findBanks,get S(){return S}};
 })();
 </script>
 
